@@ -1,0 +1,42 @@
+{
+  product: m_PCM_Product(id: "") {
+    id
+    productName
+    productLabel
+    productNumber
+    productShortDescription
+    productLongDescription
+    masterAsset: pCMProductToMasterAsset {
+      results {
+        title
+        fileName
+        fileSize
+        description
+        modifiedOn
+        assetToPublicLink {
+          results {
+            id
+            resource
+            relativeUrl
+          }
+        }
+      }
+    }
+    Asset: pCMProductToAsset {
+      results {
+        title
+        fileName
+        fileSize
+        description
+        modifiedOn
+        assetToPublicLink {
+          results {
+            id
+            resource
+            relativeUrl
+          }
+        }
+      }
+    }
+  }
+}

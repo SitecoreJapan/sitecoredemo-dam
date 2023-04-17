@@ -1,0 +1,25 @@
+import { PUBLICLLINK_HOST } from "@/constants/build";
+import { Asset } from "@/interfaces/asset";
+import Image from "next/image";
+
+interface Props {
+  asset: Asset;
+}
+
+export default function assetList({ asset }: Props) {
+  const publicLinkImage = asset.publicLink.results[0].relativeUrl;
+  const item = asset;
+
+  return (
+    <>
+      <h1 className="text-3xl">Asset List</h1>
+      {getAssets.map((item: Asset) => (
+        <div key={item.id}>
+          <h1>{item.title}</h1>
+          <assetList asset={item} />
+        </div>
+      ))}
+      <Link href="/">Home</Link>
+    </>
+  );
+}

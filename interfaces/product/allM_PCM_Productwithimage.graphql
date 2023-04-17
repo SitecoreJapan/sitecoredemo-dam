@@ -1,0 +1,38 @@
+{
+  products: allM_PCM_Product {
+    results {
+      id
+      productName
+      productNumber
+      productShortDescription
+      masterAsset: pCMProductToMasterAsset {
+        results {
+          id
+          title
+          fileName
+          publicLink: assetToPublicLink {
+            results {
+              id
+              resource
+              relativeUrl
+            }
+          }
+        }
+      }
+      asset: pCMProductToAsset {
+        results {
+          id
+          title
+          fileName
+          assetToPublicLink {
+            results {
+              id
+              resource
+              relativeUrl
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+# Write your query or mutation here
+{
+  assets: allM_Asset(first: 20) {
+    total
+    results {
+      id
+      title
+      fileName
+      publicLink: assetToPublicLink {
+        results {
+          id
+          resource
+          relativeUrl
+        }
+      }
+    }
+  }
+}

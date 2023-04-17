@@ -1,0 +1,14 @@
+{
+  asset: m_Asset(id: "dVo3ZzWdLkqLb2ztQ4lFpA") {
+    id
+    title
+    fileName
+    publicLink: assetToPublicLink {
+      results {
+        id
+        resource
+        relativeUrl
+      }
+    }
+  }
+}
