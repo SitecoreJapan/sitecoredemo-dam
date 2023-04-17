@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useMemo } from "react";
 import { NextPage } from "next";
 import AssetList from "@/components/Assets/AssetList";
+import Menu from "@/components/Menu/Menu";
+import Footer from "@/components/Footer/Footer";
 
 interface Props {
   assets: Asset[];
@@ -26,6 +28,7 @@ const Assets: NextPage<Props> = ({ assets }) => {
 
   return (
     <main>
+      <Menu />
       <h1 className="text-3xl">Asset List</h1>
       {getAssets.map((asset) => (
         <>
@@ -33,7 +36,7 @@ const Assets: NextPage<Props> = ({ assets }) => {
           <hr />
         </>
       ))}
-      <Link href="/">Home</Link>
+      <Footer />
     </main>
   );
 };

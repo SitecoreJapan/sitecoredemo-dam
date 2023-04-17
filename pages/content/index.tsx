@@ -22,7 +22,7 @@ export const getStaticProps = async () => {
   };
 };
 
-const Products: NextPage<Props> = ({ products }) => {
+const Content: NextPage<Props> = ({ products }) => {
   const getProducts = useMemo(() => (!products ? [] : products), [products]);
 
   return (
@@ -46,4 +46,4 @@ const Products: NextPage<Props> = ({ products }) => {
   );
 };
 
-export default Products;
+export default Content;
