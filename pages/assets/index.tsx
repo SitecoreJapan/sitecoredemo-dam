@@ -7,6 +7,8 @@ import { NextPage } from "next";
 import AssetList from "@/components/Assets/AssetList";
 import Menu from "@/components/Menu/Menu";
 import Footer from "@/components/Footer/Footer";
+import HeroArea from "@/components/Header/HeroArea";
+import Head from "next/head";
 
 interface Props {
   assets: Asset[];
@@ -28,14 +30,23 @@ const Assets: NextPage<Props> = ({ assets }) => {
 
   return (
     <main>
+      <Head>
+        <title>Digital Asset Management</title>
+      </Head>
       <Menu />
-      <h1 className="text-3xl">Asset List</h1>
-      {getAssets.map((asset) => (
-        <>
-          <AssetList asset={asset} />
-          <hr />
-        </>
-      ))}
+      <HeroArea
+        pageTitle="Sitecore Digital Asset Management"
+        pageDescription="Test"
+      />
+      <div>
+        <h1 className="text-3xl">Asset List</h1>
+        {getAssets.map((asset) => (
+          <>
+            <AssetList asset={asset} />
+            <hr />
+          </>
+        ))}
+      </div>
       <Footer />
     </main>
   );

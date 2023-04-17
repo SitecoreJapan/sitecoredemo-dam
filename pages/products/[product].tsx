@@ -1,7 +1,11 @@
 import { getAllProduct, getProductById } from "@/api/queries/getProduct";
+import Footer from "@/components/Footer/Footer";
+import HeroArea from "@/components/Header/HeroArea";
+import Menu from "@/components/Menu/Menu";
 import { REVALIDATE_INTERVAL } from "@/constants/build";
 import { Product } from "@/interfaces/product";
 import { NextPage } from "next";
+import Head from "next/head";
 import Link from "next/link";
 
 interface Props {
@@ -33,13 +37,22 @@ export const getStaticProps = async (context: { params: { product: any } }) => {
 
 const Product: NextPage<Props> = (props) => {
   const product = props.productInfo;
+  const pageTitle = "PCM: " + product.productName;
 
   return (
-    <main>
-      <p className="text-2xl">Name : {product.productName}</p>
-      <p>Number: {product.productNumber}</p>
-      <Link href="/products">Back to product list</Link>
-    </main>
+    <>
+      <Head>
+        <title>{pageTitle}</title>
+      </Head>
+      <main>
+        <Menu />
+        <HeroArea pageTitle={pageTitle} pageDescription="Test" />
+        <p className="text-2xl">Name : {product.productName}</p>
+        <p>Number: {product.productNumber}</p>
+        <Link href="/products">Back to product list</Link>
+        <Footer />
+      </main>
+    </>
   );
 };
 
