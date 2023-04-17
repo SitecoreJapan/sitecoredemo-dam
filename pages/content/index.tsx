@@ -30,13 +30,13 @@ const Content: NextPage<Props> = ({ products }) => {
   return (
     <>
       <Head>
-        <title>Content Management Platform</title>
+        <title>Sitecore Content Hub - Content Management Platform</title>
       </Head>
       <main>
         <Menu />
         <HeroArea
           pageTitle="Sitecore Content Marketing Platform"
-          pageDescription="Test"
+          pageDescription="Maximize the business value of stronger content by expanding the speed, scale, and quality of content production."
         />
         {getProducts.map((product) => (
           <div key={product.id}>

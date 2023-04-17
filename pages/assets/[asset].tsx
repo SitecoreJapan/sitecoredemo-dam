@@ -48,8 +48,10 @@ const Asset: NextPage<Props> = (props) => {
       </Head>
       <main>
         <Menu />
-        <HeroArea pageTitle={pageTitle} pageDescription="Test" />
-
+        <HeroArea
+          pageTitle={pageTitle}
+          pageDescription={"Digital Asset detail: " + asset.title}
+        />
         <p className="text-2xl">Title : {asset.title}</p>
         <p>Filename: {asset.fileName}</p>
         <p>id: {asset.id}</p>

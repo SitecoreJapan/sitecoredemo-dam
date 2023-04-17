@@ -8,13 +8,13 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Sitecore Content Hub: Experience Edge Sample</title>
+        <title>Sitecore Experience Edge for Content Hub Sample</title>
       </Head>
       <main>
         <Menu />
         <HeroArea
-          pageTitle="Sitecore Content Hub Sample"
-          pageDescription="Test"
+          pageTitle="Experience Edge for Content Hub"
+          pageDescription="Headless content delivery at scale"
         />
         <h1 className="text-3xl">Content Hub GraphQL Sample</h1>
         <div>

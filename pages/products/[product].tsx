@@ -46,7 +46,10 @@ const Product: NextPage<Props> = (props) => {
       </Head>
       <main>
         <Menu />
-        <HeroArea pageTitle={pageTitle} pageDescription="Test" />
+        <HeroArea
+          pageTitle={pageTitle}
+          pageDescription={"Detail of Product Content: " + product.productName}
+        />
         <p className="text-2xl">Name : {product.productName}</p>
         <p>Number: {product.productNumber}</p>
         <Link href="/products">Back to product list</Link>

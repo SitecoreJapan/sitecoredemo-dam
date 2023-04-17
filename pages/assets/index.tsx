@@ -31,12 +31,12 @@ const Assets: NextPage<Props> = ({ assets }) => {
   return (
     <main>
       <Head>
-        <title>Digital Asset Management</title>
+        <title>Sitecore Content Hub - Digital Asset Management</title>
       </Head>
       <Menu />
       <HeroArea
-        pageTitle="Sitecore Digital Asset Management"
-        pageDescription="Test"
+        pageTitle="Digital Asset Management"
+        pageDescription="Centralize all your digital assets and deliver them to any customer touchpoint"
       />
       <div>
         <h1 className="text-3xl">Asset List</h1>
