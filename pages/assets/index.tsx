@@ -5,6 +5,11 @@ import Link from "next/link";
 import { useMemo } from "react";
 import { NextPage } from "next";
 import AssetList from "@/components/Assets/AssetList";
+import Menu from "@/components/Menu/Menu";
+import Footer from "@/components/Footer/Footer";
+import HeroArea from "@/components/Header/HeroArea";
+import Head from "next/head";
+import Breadcrumbs from "@/components/Menu/Breadcrumbs";
 
 interface Props {
   assets: Asset[];
@@ -26,14 +31,25 @@ const Assets: NextPage<Props> = ({ assets }) => {
 
   return (
     <main>
-      <h1 className="text-3xl">Asset List</h1>
-      {getAssets.map((asset) => (
-        <>
-          <AssetList asset={asset} />
-          <hr />
-        </>
-      ))}
-      <Link href="/">Home</Link>
+      <Head>
+        <title>Sitecore Content Hub - Digital Asset Management</title>
+      </Head>
+      <Menu />
+      <HeroArea
+        pageTitle="Digital Asset Management"
+        pageDescription="Centralize all your digital assets and deliver them to any customer touchpoint"
+      />
+      <Breadcrumbs />
+      <div>
+        <h1 className="text-3xl">Asset List</h1>
+        {getAssets.map((asset) => (
+          <>
+            <AssetList asset={asset} />
+            <hr />
+          </>
+        ))}
+      </div>
+      <Footer />
     </main>
   );
 };

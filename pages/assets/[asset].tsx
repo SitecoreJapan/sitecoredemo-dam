@@ -4,6 +4,10 @@ import { Asset } from "@/interfaces/asset";
 import { NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import Head from "next/head";
+import Menu from "@/components/Menu/Menu";
+import HeroArea from "@/components/Header/HeroArea";
+import Footer from "@/components/Footer/Footer";
 
 interface Props {
   assetInfo: Asset;
@@ -35,24 +39,35 @@ export const getStaticProps = async (context: { params: { asset: any } }) => {
 const Asset: NextPage<Props> = (props) => {
   const asset = props.assetInfo;
   const publicLinkImage = asset.publicLink.results[0]?.relativeUrl;
+  const pageTitle = "Asset: " + asset.fileName;
 
   return (
-    <main>
-      <p className="text-2xl">Title : {asset.title}</p>
-      <p>Filename: {asset.fileName}</p>
-      <p>id: {asset.id}</p>
-      {publicLinkImage ? (
-        <Image
-          src={PUBLICLLINK_HOST + "/api/public/content/" + publicLinkImage}
-          alt={asset.title}
-          height="600"
-          width="400"
+    <>
+      <Head>
+        <title>{pageTitle}</title>
+      </Head>
+      <main>
+        <Menu />
+        <HeroArea
+          pageTitle={pageTitle}
+          pageDescription={"Digital Asset detail: " + asset.title}
         />
-      ) : (
-        <p>No Publiclink</p>
-      )}
-      <Link href="/assets">Back to asset list</Link>
-    </main>
+        <p className="text-2xl">Title : {asset.title}</p>
+        <p>Filename: {asset.fileName}</p>
+        <p>id: {asset.id}</p>
+        {publicLinkImage ? (
+          <Image
+            src={PUBLICLLINK_HOST + "/api/public/content/" + publicLinkImage}
+            alt={asset.title}
+            height="600"
+            width="400"
+          />
+        ) : (
+          <p>No Publiclink</p>
+        )}
+        <Footer />
+      </main>
+    </>
   );
 };
 

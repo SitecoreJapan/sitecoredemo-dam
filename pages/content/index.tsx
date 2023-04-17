@@ -24,19 +24,19 @@ export const getStaticProps = async () => {
   };
 };
 
-const Products: NextPage<Props> = ({ products }) => {
+const Content: NextPage<Props> = ({ products }) => {
   const getProducts = useMemo(() => (!products ? [] : products), [products]);
 
   return (
     <>
       <Head>
-        <title>Sitecore Content Hub - Product Content Management</title>
+        <title>Sitecore Content Hub - Content Management Platform</title>
       </Head>
       <main>
         <Menu />
         <HeroArea
-          pageTitle="Product Content Management"
-          pageDescription="Centralize and automate the management and maintenance of product data"
+          pageTitle="Sitecore Content Marketing Platform"
+          pageDescription="Maximize the business value of stronger content by expanding the speed, scale, and quality of content production."
         />
         {getProducts.map((product) => (
           <div key={product.id}>
@@ -57,4 +57,4 @@ const Products: NextPage<Props> = ({ products }) => {
   );
 };
 
-export default Products;
+export default Content;
