@@ -2,8 +2,20 @@ export interface Asset {
   id: string;
   title: string;
   fileName: string;
+  fileSize: number;
+  description: {
+    "en-US": string | null;
+    "ja-JP": string | null;
+  };
   publicLink: {
     results: Partial<PublicLink>[];
+  };
+  fileProperties: {
+    properties: {
+      width: string;
+      height: string;
+      content_type: string;
+    };
   };
 }
 
@@ -25,6 +37,10 @@ export interface PublicLink {
   id: string;
   resource: string;
   relativeUrl: string;
+  conversionConfiguration: {
+    width: number;
+    height: number;
+  };
 }
 
 export const publicLink = `
@@ -33,6 +49,7 @@ publicLink: assetToPublicLink {
     id
     resource
     relativeUrl
+    conversionConfiguration
   }
 }`;
 
@@ -45,6 +62,7 @@ export const allAssetQuery =
         id
         title
         fileName
+        fileSize
         ` +
   publicLink +
   `
@@ -58,6 +76,8 @@ export const assetQuery =
   id
   title
   fileName
+  fileSize
+
   ` + publicLink;
 
 export const getAssetByIdQuery = (id: string) => {
@@ -67,6 +87,9 @@ export const getAssetByIdQuery = (id: string) => {
       id
       title
       fileName
+      fileSize
+      description
+      fileProperties
       ` +
     publicLink +
     `

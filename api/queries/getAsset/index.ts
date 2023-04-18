@@ -20,6 +20,7 @@ export const getAllAsset = async (): Promise<Partial<Asset>[]> => {
       title: asset.title,
       fileName: asset.fileName,
       publicLink: asset.publicLink,
+      fileSize: asset.fileSize,
     });
   });
 

@@ -1,12 +1,13 @@
+import { Navi } from "@/interfaces/navi";
 import Link from "next/link";
 import { AiOutlineHome } from "react-icons/ai";
 
-const pages = [
-  { name: "Projects", href: "#", current: false },
-  { name: "Project Nero", href: "#", current: true },
-];
+interface Props {
+  navi: Navi[];
+}
 
-export default function Breadcrumbs() {
+export default function Breadcrumbs({ navi }: Props) {
+  const items = navi;
   return (
     <nav className="flex bg-gray-100 dark:bg-gray-800" aria-label="Breadcrumb">
       <ol
@@ -27,8 +28,8 @@ export default function Breadcrumbs() {
             </Link>
           </div>
         </li>
-        {pages.map((page) => (
-          <li key={page.name} className="flex">
+        {items.map((item) => (
+          <li key={item.name} className="flex">
             <div className="flex items-center">
               <svg
                 className="h-full w-6 flex-shrink-0 text-gray-200"
@@ -39,13 +40,13 @@ export default function Breadcrumbs() {
               >
                 <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
               </svg>
-              <a
-                href={page.href}
+              <Link
+                href={item.href}
                 className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-200 dark:hover:text-gray-400"
-                aria-current={page.current ? "page" : undefined}
+                aria-current={item.current ? "page" : undefined}
               >
-                {page.name}
-              </a>
+                {item.name}
+              </Link>
             </div>
           </li>
         ))}

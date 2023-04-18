@@ -1,13 +1,14 @@
 import { getAllAsset, getAssetById } from "@/api/queries/getAsset";
-import { PUBLICLLINK_HOST, REVALIDATE_INTERVAL } from "@/constants/build";
+import { REVALIDATE_INTERVAL } from "@/constants/build";
 import { Asset } from "@/interfaces/asset";
 import { NextPage } from "next";
-import Link from "next/link";
-import Image from "next/image";
 import Head from "next/head";
 import Menu from "@/components/Menu/Menu";
 import HeroArea from "@/components/Header/HeroArea";
 import Footer from "@/components/Footer/Footer";
+import { Navi } from "@/interfaces/navi";
+import Breadcrumbs from "@/components/Menu/Breadcrumbs";
+import AssetDetail from "@/components/Assets/AssetDetail";
 
 interface Props {
   assetInfo: Asset;
@@ -41,6 +42,11 @@ const Asset: NextPage<Props> = (props) => {
   const publicLinkImage = asset.publicLink.results[0]?.relativeUrl;
   const pageTitle = "Asset: " + asset.fileName;
 
+  const breadcrumbmenu: Navi[] = [
+    { name: "Assets", href: "/assets", current: false },
+    { name: asset.title, href: "#", current: true },
+  ];
+
   return (
     <>
       <Head>
@@ -52,19 +58,8 @@ const Asset: NextPage<Props> = (props) => {
           pageTitle={pageTitle}
           pageDescription={"Digital Asset detail: " + asset.title}
         />
-        <p className="text-2xl">Title : {asset.title}</p>
-        <p>Filename: {asset.fileName}</p>
-        <p>id: {asset.id}</p>
-        {publicLinkImage ? (
-          <Image
-            src={PUBLICLLINK_HOST + "/api/public/content/" + publicLinkImage}
-            alt={asset.title}
-            height="600"
-            width="400"
-          />
-        ) : (
-          <p>No Publiclink</p>
-        )}
+        <Breadcrumbs navi={breadcrumbmenu} />
+        <AssetDetail asset={asset} />
         <Footer />
       </main>
     </>

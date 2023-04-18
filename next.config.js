@@ -5,6 +5,6 @@ const nextConfig = {
 
 module.exports = {
   images: {
-    domains: ["shinharadam.sitecoresandbox.cloud"],
+    domains: ["shinharadam.sitecoresandbox.cloud", "images.unsplash.com"],
   },
 };

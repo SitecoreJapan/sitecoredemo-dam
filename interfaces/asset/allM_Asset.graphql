@@ -6,6 +6,9 @@
       id
       title
       fileName
+      fileSize
+      fileProperties
+      description
       publicLink: assetToPublicLink {
         results {
           id
@@ -13,6 +16,7 @@
           relativeUrl
         }
       }
+      approvalDate
     }
   }
 }
