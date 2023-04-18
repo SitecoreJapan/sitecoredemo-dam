@@ -3,6 +3,7 @@ import Footer from "@/components/Footer/Footer";
 import HeroArea from "@/components/Header/HeroArea";
 import Breadcrumbs from "@/components/Menu/Breadcrumbs";
 import Menu from "@/components/Menu/Menu";
+import ProductCard from "@/components/Products/ProductCard";
 import { REVALIDATE_INTERVAL } from "@/constants/build";
 import { Navi } from "@/interfaces/navi";
 import { Product } from "@/interfaces/product";
@@ -44,19 +45,56 @@ const Products: NextPage<Props> = ({ products }) => {
           pageDescription="Centralize and automate the management and maintenance of product data"
         />
         <Breadcrumbs navi={breadcrumbmenu} />
-        {getProducts.map((product) => (
-          <div key={product.id}>
-            <h2 className="text-2xl font-bold">
-              Product Name: {product.productName}
-            </h2>
-            <p>
-              Product ID: <Link href={"/products/" + product.id}>リンク</Link>
-            </p>
-
-            <p>Product Number: {product.productNumber}</p>
-            <hr />
+        <div className="mt-7 mb-7 px-4 sm:px-6 lg:px-8">
+          <div className="sm:flex sm:items-center">
+            <div className="sm:flex-auto">
+              <h1 className="text-2xl font-semibold leading-6 text-gray-900 dark:text-gray-200">
+                Product List
+              </h1>
+              <p className="mt-2 text-sm text-gray-700 dark:text-gray-400">
+                A list of all the users in your account including their name,
+                title, email and role.
+              </p>
+            </div>
           </div>
-        ))}
+          <div className="-mx-4 mt-8 sm:-mx-0">
+            <table className=" min-w-full divide-y divide-gray-300 dark:divide-gray-900 dark:bg-gray-700">
+              <thead>
+                <tr>
+                  <th
+                    scope="col"
+                    className="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-200 sm:pl-0"
+                  >
+                    Product Name
+                  </th>
+                  <th
+                    scope="col"
+                    className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-200 lg:table-cell"
+                  >
+                    Product Number
+                  </th>
+                  <th
+                    scope="col"
+                    className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-200 sm:table-cell"
+                  >
+                    Entity ID
+                  </th>
+                  <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                    <span className="sr-only">Edit</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 bg-gray-50 dark:bg-gray-600">
+                {getProducts.map((product) => (
+                  <tr key={product.id}>
+                    <ProductCard product={product} />
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         <Footer />
       </main>
     </>
