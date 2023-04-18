@@ -1,5 +1,7 @@
 import { Product } from "@/interfaces/product";
 import Image from "next/image";
+import AssetCard from "../Assets/AssetCard";
+import { Asset } from "@/interfaces/asset";
 
 interface Props {
   product: Product;
@@ -64,13 +66,17 @@ export default function ProductDetail({ product }: Props) {
             </dd>
           </div>
         </dl>
-        <div>
-          <ul>
-            {assetList.map((asset) => (
-              <li key={asset.id}>{asset.title}</li>
-            ))}
-          </ul>
-        </div>
+        <h2 className="text-2xl mt-8">Related Assets</h2>
+        <ul
+          role="list"
+          className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8 mt-10 ml-10 mr-10 mb-10 "
+        >
+          {assetList.map((asset) => (
+            <>
+              <AssetCard asset={asset} />
+            </>
+          ))}
+        </ul>
       </div>
     </div>
   );

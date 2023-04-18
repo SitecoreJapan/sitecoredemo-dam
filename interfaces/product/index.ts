@@ -1,4 +1,4 @@
-import { Asset } from "@/interfaces/asset";
+import { Asset, publicLink } from "@/interfaces/asset";
 
 export interface Product {
   id: string;
@@ -20,7 +20,7 @@ export interface Product {
     results: Partial<Asset>[];
   };
   asset: {
-    results: Partial<Asset>[];
+    results: Asset[];
   };
 }
 
@@ -38,7 +38,8 @@ export interface ProductResponse {
   };
 }
 
-export const productQuery = `id
+export const productQuery =
+  `id
 productName
 productLabel
 productNumber
@@ -48,12 +49,11 @@ masterAsset : pCMProductToMasterAsset{
   results{
     id
     title
-    publicLink: assetToPublicLink{
-      results
-      {
-        relativeUrl
-      }
-    }
+    fileName
+    fileSize
+    ` +
+  publicLink +
+  `
   }
 }
 asset : pCMProductToAsset
@@ -61,12 +61,12 @@ asset : pCMProductToAsset
   results
   {
     id
-    title 
-    assetToPublicLink{
-      results{
-        relativeUrl
-      }
-    }
+    title
+    fileName
+    fileSize
+    ` +
+  publicLink +
+  `
   }
 }`;
 
