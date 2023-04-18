@@ -1,7 +1,5 @@
 import { Product } from "@/interfaces/product";
-import Image from "next/image";
 import AssetCard from "../Assets/AssetCard";
-import { Asset } from "@/interfaces/asset";
 
 interface Props {
   product: Product;

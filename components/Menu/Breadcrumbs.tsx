@@ -2,11 +2,6 @@ import { Navi } from "@/interfaces/navi";
 import Link from "next/link";
 import { AiOutlineHome } from "react-icons/ai";
 
-const pages = [
-  { name: "Projects", href: "#", current: false },
-  { name: "Project a", href: "#", current: true },
-];
-
 interface Props {
   navi: Navi[];
 }

@@ -1,4 +1,3 @@
-import { BsCheck } from "react-icons/bs";
 import Image from "next/image";
 import Link from "next/link";
 import { Asset } from "@/interfaces/asset";
