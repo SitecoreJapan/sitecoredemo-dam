@@ -2,6 +2,7 @@ export interface Asset {
   id: string;
   title: string;
   fileName: string;
+  fileSize: number;
   publicLink: {
     results: Partial<PublicLink>[];
   };
@@ -45,6 +46,7 @@ export const allAssetQuery =
         id
         title
         fileName
+        fileSize
         ` +
   publicLink +
   `
@@ -58,6 +60,8 @@ export const assetQuery =
   id
   title
   fileName
+  fileSize
+
   ` + publicLink;
 
 export const getAssetByIdQuery = (id: string) => {
@@ -67,6 +71,7 @@ export const getAssetByIdQuery = (id: string) => {
       id
       title
       fileName
+      fileSize
       ` +
     publicLink +
     `

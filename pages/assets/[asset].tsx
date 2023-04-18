@@ -10,6 +10,7 @@ import HeroArea from "@/components/Header/HeroArea";
 import Footer from "@/components/Footer/Footer";
 import { Navi } from "@/interfaces/navi";
 import Breadcrumbs from "@/components/Menu/Breadcrumbs";
+import AssetDetail from "@/components/Assets/AssetDetail";
 
 interface Props {
   assetInfo: Asset;
@@ -60,19 +61,7 @@ const Asset: NextPage<Props> = (props) => {
           pageDescription={"Digital Asset detail: " + asset.title}
         />
         <Breadcrumbs navi={breadcrumbmenu} />
-        <p className="text-2xl">Title : {asset.title}</p>
-        <p>Filename: {asset.fileName}</p>
-        <p>id: {asset.id}</p>
-        {publicLinkImage ? (
-          <Image
-            src={PUBLICLLINK_HOST + "/api/public/content/" + publicLinkImage}
-            alt={asset.title}
-            height="600"
-            width="400"
-          />
-        ) : (
-          <p>No Publiclink</p>
-        )}
+        <AssetDetail asset={asset} />
         <Footer />
       </main>
     </>

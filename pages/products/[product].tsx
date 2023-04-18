@@ -3,6 +3,7 @@ import Footer from "@/components/Footer/Footer";
 import HeroArea from "@/components/Header/HeroArea";
 import Breadcrumbs from "@/components/Menu/Breadcrumbs";
 import Menu from "@/components/Menu/Menu";
+import ProductDetail from "@/components/Products/ProductDetail";
 import { REVALIDATE_INTERVAL } from "@/constants/build";
 import { Navi } from "@/interfaces/navi";
 import { Product } from "@/interfaces/product";
@@ -57,6 +58,7 @@ const Product: NextPage<Props> = (props) => {
           pageDescription={"Detail of Product Content: " + product.productName}
         />
         <Breadcrumbs navi={breadcrumbmenu} />
+        <ProductDetail />
         <p className="text-2xl">Name : {product.productName}</p>
         <p>Number: {product.productNumber}</p>
         <Link href="/products">Back to product list</Link>
