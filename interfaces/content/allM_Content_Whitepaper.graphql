@@ -1,0 +1,12 @@
+{
+  allM_Content_WhitePaper {
+    results {
+      id
+      content_Name
+      whitePaper_Title
+      whitePaper_Header
+      whitePaper_Body
+      whitePaper_Footer
+    }
+  }
+}

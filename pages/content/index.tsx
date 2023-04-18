@@ -35,7 +35,7 @@ const Content: NextPage<Props> = ({ products }) => {
       <main>
         <Menu />
         <HeroArea
-          pageTitle="Sitecore Content Marketing Platform"
+          pageTitle="Content Marketing Platform"
           pageDescription="Maximize the business value of stronger content by expanding the speed, scale, and quality of content production."
         />
         Now constructions
