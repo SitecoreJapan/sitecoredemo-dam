@@ -9,7 +9,8 @@ export interface Product {
     "ja-JP": string | null;
   };
   productShortDescription: {
-    results: Partial<Asset>[];
+    "en-US": string | null;
+    "ja-JP": string | null;
   };
   productLongDescription: {
     "en-US": string | null;
@@ -73,7 +74,7 @@ asset : pCMProductToAsset
 export const allProductQuery =
   `
 {
-  products : allM_PCM_Product(first:20) {
+  products : allM_PCM_Product(first:30) {
     results { ` +
   productQuery +
   `

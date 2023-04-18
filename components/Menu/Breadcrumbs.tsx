@@ -45,13 +45,13 @@ export default function Breadcrumbs({ navi }: Props) {
               >
                 <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
               </svg>
-              <a
+              <Link
                 href={item.href}
                 className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-200 dark:hover:text-gray-400"
                 aria-current={item.current ? "page" : undefined}
               >
                 {item.name}
-              </a>
+              </Link>
             </div>
           </li>
         ))}

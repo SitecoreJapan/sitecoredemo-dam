@@ -1,6 +1,7 @@
 import { MdProductionQuantityLimits } from "react-icons/md";
 import { BsFillPencilFill } from "react-icons/bs";
 import { HiOutlinePhotograph } from "react-icons/hi";
+import Link from "next/link";
 
 const features = [
   {
@@ -44,12 +45,12 @@ export default function Feature() {
                 <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-800 dark:text-gray-300">
                   <p className="flex-auto">{feature.description}</p>
                   <p className="mt-6">
-                    <a
+                    <Link
                       href={feature.href}
                       className="text-sm font-semibold leading-6 text-indigo-600 dark:text-indigo-400"
                     >
                       Check Entities <span aria-hidden="true">→</span>
-                    </a>
+                    </Link>
                   </p>
                 </dd>
               </div>

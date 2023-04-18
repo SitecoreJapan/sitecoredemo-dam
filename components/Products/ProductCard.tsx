@@ -1,6 +1,7 @@
 import { PUBLICLLINK_HOST } from "@/constants/build";
 import { Product } from "@/interfaces/product";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   product: Product;
@@ -14,19 +15,21 @@ export default function ProductCard({ product }: Props) {
         <div className="flex items-center">
           <div className="h-11 w-11 flex-shrink-0">
             {productThumnail ? (
-              <Image
-                src={
-                  PUBLICLLINK_HOST +
-                  "/api/public/content/" +
-                  productThumnail.results[0].relativeUrl
-                }
-                alt={product.productName}
-                height="600"
-                width="400"
-                className="pointer-events-none object-cover group-hover:opacity-75"
-              />
+              <Link href={"/products/" + product.id}>
+                <Image
+                  src={
+                    PUBLICLLINK_HOST +
+                    "/api/public/content/" +
+                    productThumnail.results[0].relativeUrl
+                  }
+                  alt={product.productName}
+                  height="600"
+                  width="400"
+                  className="pointer-events-none object-cover group-hover:opacity-75"
+                />
+              </Link>
             ) : (
-              <p></p>
+              <p>No Image</p>
             )}
           </div>
           <div className="ml-4">
@@ -43,12 +46,12 @@ export default function ProductCard({ product }: Props) {
         {product.id}
       </td>
       <td className="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-        <a
+        <Link
           href={"/products/" + product.id}
           className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-500"
         >
           View detail<span className="sr-only">, {product.productNumber}</span>
-        </a>
+        </Link>
       </td>
     </>
   );
