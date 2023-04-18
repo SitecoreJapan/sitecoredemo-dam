@@ -1,9 +1,7 @@
 import { getAllAsset, getAssetById } from "@/api/queries/getAsset";
-import { PUBLICLLINK_HOST, REVALIDATE_INTERVAL } from "@/constants/build";
+import { REVALIDATE_INTERVAL } from "@/constants/build";
 import { Asset } from "@/interfaces/asset";
 import { NextPage } from "next";
-import Link from "next/link";
-import Image from "next/image";
 import Head from "next/head";
 import Menu from "@/components/Menu/Menu";
 import HeroArea from "@/components/Header/HeroArea";

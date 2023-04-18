@@ -1,7 +1,6 @@
 import { getAllAsset } from "@/api/queries/getAsset";
 import { REVALIDATE_INTERVAL } from "@/constants/build";
 import { Asset } from "@/interfaces/asset";
-import Link from "next/link";
 import { useMemo } from "react";
 import { NextPage } from "next";
 import AssetCard from "@/components/Assets/AssetCard";
