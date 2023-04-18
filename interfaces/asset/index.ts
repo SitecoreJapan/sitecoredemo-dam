@@ -3,8 +3,19 @@ export interface Asset {
   title: string;
   fileName: string;
   fileSize: number;
+  description: {
+    "en-US": string | null;
+    "ja-JP": string | null;
+  };
   publicLink: {
     results: Partial<PublicLink>[];
+  };
+  fileProperties: {
+    properties: {
+      width: string;
+      height: string;
+      content_type: string;
+    };
   };
 }
 
@@ -72,6 +83,8 @@ export const getAssetByIdQuery = (id: string) => {
       title
       fileName
       fileSize
+      description
+      fileProperties
       ` +
     publicLink +
     `

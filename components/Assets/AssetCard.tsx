@@ -10,6 +10,8 @@ interface Props {
 
 const AssetCard: React.FC<Props> = ({ asset }) => {
   const publicLinkImage = asset.publicLink.results[0]?.relativeUrl;
+  const fileSize = asset.fileSize.toFixed(2);
+
   return (
     <>
       <li key={asset.id} className="relative">
@@ -38,7 +40,7 @@ const AssetCard: React.FC<Props> = ({ asset }) => {
           {asset.fileName}
         </p>
         <p className="pointer-events-none block text-sm font-medium text-gray-500">
-          {asset.fileSize} MB
+          {fileSize} MB
         </p>
       </li>
     </>

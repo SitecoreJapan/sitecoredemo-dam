@@ -12,6 +12,13 @@ export default function AssetDetail({ asset }: Props) {
   const assetImage =
     PUBLICLLINK_HOST + "/api/public/content/" + publicLinkImage;
 
+  const descriptionen = asset.description["en-US"]
+    ? asset.description["en-US"]
+    : "No description available.";
+  const descriptionja = asset.description["ja-JP"]
+    ? asset.description["ja-JP"]
+    : "No description available.";
+
   return (
     <div className="bg-gray-900 py-12 sm:py-12">
       <div className="relative isolate">
@@ -33,8 +40,14 @@ export default function AssetDetail({ asset }: Props) {
                 {asset.title}
               </h2>
               <p className="mt-6 text-lg leading-8 text-gray-300">
-                Lorem ipsum dolor sit amet consect adipisicing elit. Possimus
-                magnam voluptatum cupiditate veritatis in accusamus quisquam.
+                Description: {descriptionen}
+              </p>
+              <p className="mt-6 text-lg leading-8 text-gray-300">
+                Description(Ja): {descriptionja}
+              </p>
+              <p className="mt-6 text-lg leading-8 text-gray-300">
+                Filesize: Width {asset.fileProperties.properties.width}, height{" "}
+                {asset.fileProperties.properties.height}
               </p>
             </div>
           </div>
