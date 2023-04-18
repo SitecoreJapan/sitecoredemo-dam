@@ -4,6 +4,17 @@ export interface Product {
   id: string;
   productName: string;
   productNumber: string;
+  productLabel: {
+    "en-US": string | null;
+    "ja-JP": string | null;
+  };
+  productShortDescription: {
+    results: Partial<Asset>[];
+  };
+  productLongDescription: {
+    "en-US": string | null;
+    "ja-JP": string | null;
+  };
   masterAsset: {
     results: Partial<Asset>[];
   };
