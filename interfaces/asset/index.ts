@@ -37,6 +37,10 @@ export interface PublicLink {
   id: string;
   resource: string;
   relativeUrl: string;
+  conversionConfiguration: {
+    width: number;
+    height: number;
+  };
 }
 
 export const publicLink = `
@@ -45,6 +49,7 @@ publicLink: assetToPublicLink {
     id
     resource
     relativeUrl
+    conversionConfiguration
   }
 }`;
 

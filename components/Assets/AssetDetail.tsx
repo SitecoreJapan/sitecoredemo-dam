@@ -1,5 +1,6 @@
 import { BsCheck } from "react-icons/bs";
 import Image from "next/image";
+import Link from "next/link";
 import { Asset } from "@/interfaces/asset";
 import { PUBLICLLINK_HOST } from "@/constants/build";
 
@@ -11,6 +12,8 @@ export default function AssetDetail({ asset }: Props) {
   const publicLinkImage = asset.publicLink.results[0]?.relativeUrl;
   const assetImage =
     PUBLICLLINK_HOST + "/api/public/content/" + publicLinkImage;
+
+  const publicLinkImageList = asset.publicLink.results;
 
   const descriptionen = asset.description["en-US"]
     ? asset.description["en-US"]
@@ -49,6 +52,24 @@ export default function AssetDetail({ asset }: Props) {
                 Filesize: Width {asset.fileProperties.properties.width}, height{" "}
                 {asset.fileProperties.properties.height}
               </p>
+              <p className="mt-6 text-lg leading-8 text-gray-100">
+                List of Public Link
+              </p>
+              <ul className="text-gray-400 list-disc">
+                {publicLinkImageList.map((publicLink) => (
+                  <li key={publicLink.id}>
+                    <Link
+                      href={
+                        PUBLICLLINK_HOST +
+                        "/api/public/content/" +
+                        publicLink.relativeUrl
+                      }
+                    >
+                      {publicLink.relativeUrl}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
