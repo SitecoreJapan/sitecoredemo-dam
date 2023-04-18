@@ -48,7 +48,7 @@ export default function Feature() {
                       href={feature.href}
                       className="text-sm font-semibold leading-6 text-indigo-600 dark:text-indigo-400"
                     >
-                      Learn more <span aria-hidden="true">→</span>
+                      Check Entities <span aria-hidden="true">→</span>
                     </a>
                   </p>
                 </dd>

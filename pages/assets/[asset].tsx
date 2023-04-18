@@ -8,6 +8,8 @@ import Head from "next/head";
 import Menu from "@/components/Menu/Menu";
 import HeroArea from "@/components/Header/HeroArea";
 import Footer from "@/components/Footer/Footer";
+import { Navi } from "@/interfaces/navi";
+import Breadcrumbs from "@/components/Menu/Breadcrumbs";
 
 interface Props {
   assetInfo: Asset;
@@ -41,6 +43,11 @@ const Asset: NextPage<Props> = (props) => {
   const publicLinkImage = asset.publicLink.results[0]?.relativeUrl;
   const pageTitle = "Asset: " + asset.fileName;
 
+  const breadcrumbmenu: Navi[] = [
+    { name: "Assets", href: "/assets", current: false },
+    { name: asset.title, href: "#", current: true },
+  ];
+
   return (
     <>
       <Head>
@@ -52,6 +59,7 @@ const Asset: NextPage<Props> = (props) => {
           pageTitle={pageTitle}
           pageDescription={"Digital Asset detail: " + asset.title}
         />
+        <Breadcrumbs navi={breadcrumbmenu} />
         <p className="text-2xl">Title : {asset.title}</p>
         <p>Filename: {asset.fileName}</p>
         <p>id: {asset.id}</p>

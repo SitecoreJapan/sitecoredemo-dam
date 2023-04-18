@@ -10,6 +10,7 @@ import Footer from "@/components/Footer/Footer";
 import HeroArea from "@/components/Header/HeroArea";
 import Head from "next/head";
 import Breadcrumbs from "@/components/Menu/Breadcrumbs";
+import { Navi } from "@/interfaces/navi";
 
 interface Props {
   assets: Asset[];
@@ -29,6 +30,10 @@ export const getStaticProps = async () => {
 const Assets: NextPage<Props> = ({ assets }) => {
   const getAssets = useMemo(() => (!assets ? [] : assets), [assets]);
 
+  const breadcrumbmenu: Navi[] = [
+    { name: "Assets", href: "/assets", current: true },
+  ];
+
   return (
     <main>
       <Head>
@@ -39,7 +44,7 @@ const Assets: NextPage<Props> = ({ assets }) => {
         pageTitle="Digital Asset Management"
         pageDescription="Centralize all your digital assets and deliver them to any customer touchpoint"
       />
-      <Breadcrumbs />
+      <Breadcrumbs navi={breadcrumbmenu} />
       <div>
         <h1 className="text-3xl">Asset List</h1>
         {getAssets.map((asset) => (

@@ -4,6 +4,7 @@ import HeroArea from "@/components/Header/HeroArea";
 import Breadcrumbs from "@/components/Menu/Breadcrumbs";
 import Menu from "@/components/Menu/Menu";
 import { REVALIDATE_INTERVAL } from "@/constants/build";
+import { Navi } from "@/interfaces/navi";
 import { Product } from "@/interfaces/product";
 import { NextPage } from "next";
 import Head from "next/head";
@@ -40,6 +41,10 @@ const Product: NextPage<Props> = (props) => {
   const product = props.productInfo;
   const pageTitle = "PCM: " + product.productName;
 
+  const breadcrumbmenu: Navi[] = [
+    { name: "Products", href: "/products", current: false },
+    { name: product.productName, href: "#", current: true },
+  ];
   return (
     <>
       <Head>
@@ -51,7 +56,7 @@ const Product: NextPage<Props> = (props) => {
           pageTitle={pageTitle}
           pageDescription={"Detail of Product Content: " + product.productName}
         />
-        <Breadcrumbs />
+        <Breadcrumbs navi={breadcrumbmenu} />
         <p className="text-2xl">Name : {product.productName}</p>
         <p>Number: {product.productNumber}</p>
         <Link href="/products">Back to product list</Link>

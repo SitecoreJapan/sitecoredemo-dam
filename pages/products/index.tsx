@@ -1,8 +1,10 @@
 import { getAllProduct } from "@/api/queries/getProduct";
 import Footer from "@/components/Footer/Footer";
 import HeroArea from "@/components/Header/HeroArea";
+import Breadcrumbs from "@/components/Menu/Breadcrumbs";
 import Menu from "@/components/Menu/Menu";
 import { REVALIDATE_INTERVAL } from "@/constants/build";
+import { Navi } from "@/interfaces/navi";
 import { Product } from "@/interfaces/product";
 import { NextPage } from "next";
 import Head from "next/head";
@@ -26,6 +28,9 @@ export const getStaticProps = async () => {
 
 const Products: NextPage<Props> = ({ products }) => {
   const getProducts = useMemo(() => (!products ? [] : products), [products]);
+  const breadcrumbmenu: Navi[] = [
+    { name: "Products", href: "/products", current: true },
+  ];
 
   return (
     <>
@@ -38,6 +43,7 @@ const Products: NextPage<Props> = ({ products }) => {
           pageTitle="Product Content Management"
           pageDescription="Centralize and automate the management and maintenance of product data"
         />
+        <Breadcrumbs navi={breadcrumbmenu} />
         {getProducts.map((product) => (
           <div key={product.id}>
             <h2 className="text-2xl font-bold">

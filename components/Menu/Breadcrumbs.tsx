@@ -4,7 +4,7 @@ import { AiOutlineHome } from "react-icons/ai";
 
 const pages = [
   { name: "Projects", href: "#", current: false },
-  { name: "Project Nero", href: "#", current: true },
+  { name: "Project a", href: "#", current: true },
 ];
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function Breadcrumbs({ navi }: Props) {
-  const items = pages;
+  const items = navi;
   return (
     <nav className="flex bg-gray-100 dark:bg-gray-800" aria-label="Breadcrumb">
       <ol
