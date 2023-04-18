@@ -1,78 +1,82 @@
+import { Product } from "@/interfaces/product";
 import Image from "next/image";
+import AssetCard from "../Assets/AssetCard";
+import { Asset } from "@/interfaces/asset";
 
-const features = [
-  { name: "Origin", description: "Designed by Good Goods, Inc." },
-  {
-    name: "Material",
-    description:
-      "Solid walnut base with rare earth magnets and powder coated steel card cover",
-  },
-  { name: "Dimensions", description: '6.25" x 3.55" x 1.15"' },
-  { name: "Finish", description: "Hand sanded and finished with natural oil" },
-  { name: "Includes", description: "Wood card tray and 3 refill packs" },
-  {
-    name: "Considerations",
-    description:
-      "Made from natural materials. Grain and color vary with each item.",
-  },
-];
+interface Props {
+  product: Product;
+}
 
-export default function ProductDetail() {
+export default function ProductDetail({ product }: Props) {
+  const assetList = product.asset.results;
   return (
-    <div className="bg-white">
-      <div className="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-8 gap-y-16 px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
-        <div>
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Technical Specifications
-          </h2>
-          <p className="mt-4 text-gray-500">
-            The walnut wood card tray is precision milled to perfectly fit a
-            stack of Focus cards. The powder coated steel divider separates
-            active cards from new ones, or can be used to archive important task
-            lists.
-          </p>
-
-          <dl className="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
-            {features.map((feature) => (
-              <div key={feature.name} className="border-t border-gray-200 pt-4">
-                <dt className="font-medium text-gray-900">{feature.name}</dt>
-                <dd className="mt-2 text-sm text-gray-500">
-                  {feature.description}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-        <div className="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
-          <Image
-            src="https://shinharadam.sitecoresandbox.cloud/api/public/content/b948d7a0cdab41e5aff6b971f56c41b8"
-            alt="Walnut card tray with white powder coated steel divider and 3 punchout holes."
-            className="rounded-lg bg-gray-100"
-            height="200"
-            width="200"
-          />
-          <Image
-            src="https://shinharadam.sitecoresandbox.cloud/api/public/content/b948d7a0cdab41e5aff6b971f56c41b8"
-            alt="Top down view of walnut card tray with embedded magnets and card groove."
-            className="rounded-lg bg-gray-100"
-            height="200"
-            width="200"
-          />
-          <Image
-            src="https://shinharadam.sitecoresandbox.cloud/api/public/content/b948d7a0cdab41e5aff6b971f56c41b8"
-            alt="Side of walnut card tray with card groove and recessed card area."
-            className="rounded-lg bg-gray-100"
-            height="200"
-            width="200"
-          />
-          <Image
-            src="https://shinharadam.sitecoresandbox.cloud/api/public/content/b948d7a0cdab41e5aff6b971f56c41b8"
-            alt="Walnut card tray filled with cards and card angled in dedicated groove."
-            className="rounded-lg bg-gray-100"
-            height="200"
-            width="200"
-          />
-        </div>
+    <div className="dark:bg-gray-900 px-4 py-8">
+      <div>
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-200 sm:text-4xl">
+          Product Name: {product.productName}
+        </h2>
+        <div className="text-gray-700">ID: {product.id}</div>
+        <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-10 ">
+          <div key="label" className="border-t border-gray-200 pt-4">
+            <dt className="font-medium text-gray-900 dark:text-gray-200">
+              Label
+            </dt>
+            <dd className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              {product.productLabel["en-US"]}
+            </dd>
+          </div>
+          <div key="labelja" className="border-t border-gray-200 pt-4">
+            <dt className="font-medium text-gray-900 dark:text-gray-200">
+              ラベル
+            </dt>
+            <dd className="mt-2 text-sm text-gray-500">
+              {product.productLabel["ja-JP"]}
+            </dd>
+          </div>
+          <div key="label" className="border-t border-gray-200 pt-4">
+            <dt className="font-medium text-gray-900 dark:text-gray-200">
+              Short Description
+            </dt>
+            <dd className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              {product.productShortDescription["en-US"]}
+            </dd>
+          </div>
+          <div key="shortDescription" className="border-t border-gray-200 pt-4">
+            <dt className="font-medium text-gray-900 dark:text-gray-200">
+              短い概要
+            </dt>
+            <dd className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              {product.productShortDescription["ja-JP"]}
+            </dd>
+          </div>
+          <div key="label" className="border-t border-gray-200 pt-4">
+            <dt className="font-medium text-gray-900 dark:text-gray-200">
+              Long Description
+            </dt>
+            <dd className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              {product.productLongDescription["en-US"]}
+            </dd>
+          </div>
+          <div key="shortDescription" className="border-t border-gray-200 pt-4">
+            <dt className="font-medium text-gray-900 dark:text-gray-200">
+              長い概要
+            </dt>
+            <dd className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              {product.productLongDescription["ja-JP"]}
+            </dd>
+          </div>
+        </dl>
+        <h2 className="text-2xl mt-8">Related Assets</h2>
+        <ul
+          role="list"
+          className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8 mt-10 ml-10 mr-10 mb-10 "
+        >
+          {assetList.map((asset) => (
+            <>
+              <AssetCard asset={asset} />
+            </>
+          ))}
+        </ul>
       </div>
     </div>
   );

@@ -19,6 +19,7 @@ export const getAllProduct = async (): Promise<Partial<Product>[]> => {
       id: product.id,
       productName: product.productName,
       productNumber: product.productNumber,
+      masterAsset: product.masterAsset,
     });
   });
 

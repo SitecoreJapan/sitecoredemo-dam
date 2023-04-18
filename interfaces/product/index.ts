@@ -1,14 +1,26 @@
-import { Asset } from "@/interfaces/asset";
+import { Asset, publicLink } from "@/interfaces/asset";
 
 export interface Product {
   id: string;
   productName: string;
   productNumber: string;
+  productLabel: {
+    "en-US": string | null;
+    "ja-JP": string | null;
+  };
+  productShortDescription: {
+    "en-US": string | null;
+    "ja-JP": string | null;
+  };
+  productLongDescription: {
+    "en-US": string | null;
+    "ja-JP": string | null;
+  };
   masterAsset: {
     results: Partial<Asset>[];
   };
   asset: {
-    results: Partial<Asset>[];
+    results: Asset[];
   };
 }
 
@@ -26,7 +38,8 @@ export interface ProductResponse {
   };
 }
 
-export const productQuery = `id
+export const productQuery =
+  `id
 productName
 productLabel
 productNumber
@@ -36,12 +49,11 @@ masterAsset : pCMProductToMasterAsset{
   results{
     id
     title
-    publicLink: assetToPublicLink{
-      results
-      {
-        relativeUrl
-      }
-    }
+    fileName
+    fileSize
+    ` +
+  publicLink +
+  `
   }
 }
 asset : pCMProductToAsset
@@ -49,12 +61,12 @@ asset : pCMProductToAsset
   results
   {
     id
-    title 
-    assetToPublicLink{
-      results{
-        relativeUrl
-      }
-    }
+    title
+    fileName
+    fileSize
+    ` +
+  publicLink +
+  `
   }
 }`;
 
@@ -62,7 +74,7 @@ asset : pCMProductToAsset
 export const allProductQuery =
   `
 {
-  products : allM_PCM_Product(first:20) {
+  products : allM_PCM_Product(first:30) {
     results { ` +
   productQuery +
   `

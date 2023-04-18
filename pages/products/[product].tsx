@@ -58,10 +58,7 @@ const Product: NextPage<Props> = (props) => {
           pageDescription={"Detail of Product Content: " + product.productName}
         />
         <Breadcrumbs navi={breadcrumbmenu} />
-        <ProductDetail />
-        <p className="text-2xl">Name : {product.productName}</p>
-        <p>Number: {product.productNumber}</p>
-        <Link href="/products">Back to product list</Link>
+        <ProductDetail product={product} />
         <Footer />
       </main>
     </>
