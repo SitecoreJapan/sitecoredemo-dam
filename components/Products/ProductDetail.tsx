@@ -6,6 +6,7 @@ interface Props {
 }
 
 export default function ProductDetail({ product }: Props) {
+  const assetList = product.asset.results;
   return (
     <div className="dark:bg-gray-900 px-4 py-8">
       <div>
@@ -63,6 +64,13 @@ export default function ProductDetail({ product }: Props) {
             </dd>
           </div>
         </dl>
+        <div>
+          <ul>
+            {assetList.map((asset) => (
+              <li key={asset.id}>{asset.title}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
