@@ -38,19 +38,7 @@ const Content: NextPage<Props> = ({ products }) => {
           pageTitle="Sitecore Content Marketing Platform"
           pageDescription="Maximize the business value of stronger content by expanding the speed, scale, and quality of content production."
         />
-        {getProducts.map((product) => (
-          <div key={product.id}>
-            <h2 className="text-2xl font-bold">
-              Product Name: {product.productName}
-            </h2>
-            <p>
-              Product ID: <Link href={"/products/" + product.id}>リンク</Link>
-            </p>
-
-            <p>Product Number: {product.productNumber}</p>
-            <hr />
-          </div>
-        ))}
+        Now constructions
         <Footer />
       </main>
     </>
