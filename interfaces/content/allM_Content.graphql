@@ -1,0 +1,10 @@
+{
+  allM_Content {
+    results {
+      id
+      content_Name
+      content_PublicationDate
+      createdOn
+    }
+  }
+}

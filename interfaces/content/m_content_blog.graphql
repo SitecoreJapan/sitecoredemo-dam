@@ -1,0 +1,12 @@
+{
+  m_Content_Blog(id: "lJtWSgsv0U2CM70L9V7neA") {
+    blog_Title
+    blog_Quote
+    blog_Body
+    id
+    content_PublicationDate
+    Locale: localizationToContent {
+      valueName
+    }
+  }
+}

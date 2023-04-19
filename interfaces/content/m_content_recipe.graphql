@@ -1,0 +1,13 @@
+{
+  m_Content_Recipe(id: "f4NYNnpjJE6HUmrkfgP4gw") {
+    recipe_Title
+    recipe_Ingredients
+    recipe_Cookinginstructions
+    recipe_Nutritionalfacts
+    id
+    content_PublicationDate
+    Locale: localizationToContent {
+      valueName
+    }
+  }
+}
