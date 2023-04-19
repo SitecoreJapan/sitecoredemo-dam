@@ -30,7 +30,7 @@ Locale: localizationToContent {
 export const allBlogQuery =
   `
   {
-    allM_Content_Blog {
+    blog: allM_Content_Blog {
       results {
         content_Name
         blog_Title
@@ -45,7 +45,7 @@ export const allBlogQuery =
 export const allRecipeQuery =
   `
   {
-    allM_Content_Blog {
+    recipe: allM_Content_Recipe {
       results {
         recipe_Title
         recipe_Ingredients
@@ -58,21 +58,37 @@ export const allRecipeQuery =
     }
   }`;
 
-export const getAssetByIdQuery = (id: string) => {
+export const getBlogByIdQuery = (id: string) => {
   return (
-    `{
-      asset: m_Asset(id: "${id}") {
-        id
-        title
-        fileName
-        fileSize
-        description
-        fileProperties
-        ` +
-    publicLink +
     `
-      }
+  {
+    blog: m_Content_Blog(id: "${id}") {
+      blog_Title
+      blog_Quote
+      blog_Body
+      ` +
+    m_content +
+    `
     }
+  }
+  `
+  );
+};
+
+export const getRecipeByIdQuery = (id: string) => {
+  return (
     `
+  {
+    recipe: m_Content_Recipe(id: "${id}") {
+      recipe_Title
+      recipe_Ingredients
+      recipe_Cookinginstructions
+      recipe_Nutritionalfacts
+      ` +
+    m_content +
+    `
+    }
+  }
+  `
   );
 };
