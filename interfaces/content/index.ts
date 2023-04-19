@@ -1,7 +1,7 @@
 export interface Content {
   id: string;
-  content_PublicationDate: string;
-  Locale: {
+  publicationDate: string;
+  locale: {
     valueName: string;
   };
 }
@@ -19,10 +19,38 @@ export interface Recipe extends Content {
   recipe_Nutritionalfacts: string;
 }
 
+export interface AllBlogResponse {
+  data: {
+    blog: {
+      results: Partial<Blog>[];
+    };
+  };
+}
+
+export interface BlogResponse {
+  data: {
+    blog: Partial<Blog>;
+  };
+}
+
+export interface AllRecipeResponse {
+  data: {
+    recipe: {
+      results: Partial<Recipe>[];
+    };
+  };
+}
+
+export interface RecipeResponse {
+  data: {
+    recipe: Partial<Recipe>;
+  };
+}
+
 export const m_content = `
 id
-content_PublicationDate
-Locale: localizationToContent {
+publicationDate: content_PublicationDate
+locale: localizationToContent {
   valueName
 }
 `;
