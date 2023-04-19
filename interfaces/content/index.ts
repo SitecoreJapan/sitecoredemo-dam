@@ -1,8 +1,13 @@
+import { Asset, publicLink } from "@/interfaces/asset";
+
 export interface Content {
   id: string;
   publicationDate: string;
   locale: {
     valueName: string;
+  };
+  assets: {
+    results: Partial<Asset>[];
   };
 }
 
@@ -47,18 +52,30 @@ export interface RecipeResponse {
   };
 }
 
-export const m_content = `
+export const m_content =
+  `
 id
 publicationDate: content_PublicationDate
 locale: localizationToContent {
   valueName
+}
+assets: cmpContentToBriefAsset{
+  results
+  {
+    id
+    title
+    fileName
+    ` +
+  publicLink +
+  `
+  }
 }
 `;
 
 export const allBlogQuery =
   `
   {
-    blog: allM_Content_Blog {
+    blog: allM_Content_Blog (orderBy: CONTENT_PUBLICATIONDATE_DESC) {
       results {
         content_Name
         blog_Title
@@ -73,7 +90,7 @@ export const allBlogQuery =
 export const allRecipeQuery =
   `
   {
-    recipe: allM_Content_Recipe {
+    recipe: allM_Content_Recipe (orderBy: CONTENT_PUBLICATIONDATE_DESC){
       results {
         recipe_Title
         recipe_Ingredients
