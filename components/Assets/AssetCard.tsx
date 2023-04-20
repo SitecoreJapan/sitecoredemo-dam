@@ -25,7 +25,7 @@ const AssetCard: React.FC<Props> = ({ asset }) => {
               className="pointer-events-none object-cover group-hover:opacity-75"
             />
           ) : (
-            <p>No Publiclink Image</p>
+            <p className="dark:text-gray-800">No Publiclink Image</p>
           )}
           <Link href={"/assets/" + asset.id}>
             <button
