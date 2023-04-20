@@ -1,3 +1,4 @@
+import { ContentTitle } from "@/interfaces/content";
 import Image from "next/image";
 
 const posts = [
@@ -31,12 +32,16 @@ const posts = [
   // More posts...
 ];
 
-export default function ContentList() {
+interface Props {
+  content: Partial<ContentTitle>[];
+}
+
+export default function ContentList({ content }: Props) {
   return (
     <div>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-8 pt-10">
-          {posts.map((post) => (
+          {content.map((post) => (
             <article
               key={post.id}
               className="flex max-w-xl flex-col items-start justify-between"
@@ -49,12 +54,12 @@ export default function ContentList() {
                   </a>
                 </h3>
                 <div className="flex items-center gap-x-4 text-xs">
-                  <time dateTime={post.datetime} className="">
-                    {post.date}
+                  <time dateTime={post.publicationDate} className="">
+                    {post.publicationDate}
                   </time>
                 </div>
                 <p className="mt-5 line-clamp-3 text-sm leading-6 ">
-                  {post.description}
+                  {post.brief}
                 </p>
               </div>
             </article>

@@ -14,6 +14,7 @@ export interface Content {
 
 export interface ContentTitle extends Content {
   title: string;
+  href: string;
 }
 
 export interface Blog extends Content {
