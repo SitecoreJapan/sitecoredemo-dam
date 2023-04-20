@@ -30,8 +30,35 @@ export const getStaticProps = async () => {
 };
 
 const Content: NextPage<Props> = ({ posts, articles }) => {
-  const getPosts = useMemo(() => (!posts ? [] : posts), [posts]);
-  const getArticles = useMemo(() => (!articles ? [] : articles), [articles]);
+  const getAllPosts = useMemo(() => (!posts ? [] : posts), [posts]);
+  const getAllArticles = useMemo(() => (!articles ? [] : articles), [articles]);
+
+  const getPosts: Partial<ContentTitle>[] = [];
+  const getArticles: Partial<ContentTitle>[] = [];
+
+  getAllPosts.forEach((post: Partial<Blog>, index) => {
+    if (index < 3) {
+      getPosts.push({
+        id: post.id,
+        title: post.blog_Title,
+        href: "/blog",
+        brief: "post.brief",
+        publicationDate: post.publicationDate,
+      });
+    }
+  });
+
+  getAllArticles.forEach((article: Partial<Recipe>, index) => {
+    if (index < 3) {
+      getPosts.push({
+        id: article.id,
+        title: article.recipe_Title,
+        href: "/content/recipe",
+        brief: article.brief,
+        publicationDate: article.publicationDate,
+      });
+    }
+  });
 
   return (
     <>
@@ -48,24 +75,14 @@ const Content: NextPage<Props> = ({ posts, articles }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <h2 className="text-2xl mb-3">Blog</h2>
-              <ContentList />
-              {getPosts.map((post) => (
-                <tr key={post.id}>
-                  {post.blog_Title}: {post.publicationDate}
-                </tr>
-              ))}
+              <ContentList content={getPosts} />
               <p className="text-right mt-4">
                 <Link href="/blog/">More blog posts</Link>
               </p>
             </div>
             <div>
               <h2 className="text-2xl mb-3">Recipe</h2>
-              <ContentList />
-              {getArticles.map((article) => (
-                <tr key={article.id}>
-                  {article.recipe_Title}: {article.publicationDate}
-                </tr>
-              ))}
+              <ContentList content={getArticles} />
               <p className="text-right mt-4">
                 <Link href="/content/recipe/">More Recipes</Link>
               </p>
