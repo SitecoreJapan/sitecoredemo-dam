@@ -9,6 +9,11 @@ export interface Content {
   assets: {
     results: Partial<Asset>[];
   };
+  brief: string;
+}
+
+export interface ContentTitle extends Content {
+  title: string;
 }
 
 export interface Blog extends Content {
@@ -59,6 +64,7 @@ publicationDate: content_PublicationDate
 locale: localizationToContent {
   valueName
 }
+brief: content_Brief
 assets: cmpContentToBriefAsset{
   results
   {

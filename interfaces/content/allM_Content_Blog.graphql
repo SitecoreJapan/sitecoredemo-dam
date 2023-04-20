@@ -10,6 +10,7 @@
       Locale: localizationToContent {
         valueName
       }
+      content_Brief
     }
   }
 }

@@ -1,10 +1,11 @@
 import { getAllBlog } from "@/api/queries/getBlog";
 import { getAllRecipe } from "@/api/queries/getRecipe";
+import ContentList from "@/components/Content/ContentList";
 import Footer from "@/components/Footer/Footer";
 import HeroArea from "@/components/Header/HeroArea";
 import Menu from "@/components/Menu/Menu";
 import { REVALIDATE_INTERVAL } from "@/constants/build";
-import { Blog, Recipe } from "@/interfaces/content";
+import { Blog, ContentTitle, Recipe } from "@/interfaces/content";
 import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
@@ -47,19 +48,27 @@ const Content: NextPage<Props> = ({ posts, articles }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <h2 className="text-2xl mb-3">Blog</h2>
+              <ContentList />
               {getPosts.map((post) => (
                 <tr key={post.id}>
                   {post.blog_Title}: {post.publicationDate}
                 </tr>
               ))}
+              <p className="text-right mt-4">
+                <Link href="/blog/">More blog posts</Link>
+              </p>
             </div>
             <div>
               <h2 className="text-2xl mb-3">Recipe</h2>
+              <ContentList />
               {getArticles.map((article) => (
                 <tr key={article.id}>
                   {article.recipe_Title}: {article.publicationDate}
                 </tr>
               ))}
+              <p className="text-right mt-4">
+                <Link href="/content/recipe/">More Recipes</Link>
+              </p>
             </div>
           </div>
         </div>

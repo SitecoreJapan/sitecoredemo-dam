@@ -1,9 +1,11 @@
 import { getAllRecipe } from "@/api/queries/getRecipe";
 import Footer from "@/components/Footer/Footer";
 import HeroArea from "@/components/Header/HeroArea";
+import Breadcrumbs from "@/components/Menu/Breadcrumbs";
 import Menu from "@/components/Menu/Menu";
 import { REVALIDATE_INTERVAL } from "@/constants/build";
 import { Recipe } from "@/interfaces/content";
+import { Navi } from "@/interfaces/navi";
 import { NextPage } from "next";
 import Head from "next/head";
 import { useMemo } from "react";
@@ -23,30 +25,34 @@ export const getStaticProps = async () => {
   };
 };
 
-const Content: NextPage<Props> = ({ articles }) => {
+const Recipe: NextPage<Props> = ({ articles }) => {
   const getArticles = useMemo(() => (!articles ? [] : articles), [articles]);
+  const breadcrumbmenu: Navi[] = [
+    { name: "Content", href: "/content", current: false },
+    { name: "Recipe", href: "/content/recipe", current: true },
+  ];
 
   return (
     <>
       <Head>
-        <title>Sitecore Content Hub - Content Management Platform</title>
+        <title>Sitecore Content Hub - Recipe Home</title>
       </Head>
       <main>
         <Menu />
         <HeroArea
-          pageTitle="Content Marketing Platform"
-          pageDescription="Maximize the business value of stronger content by expanding the speed, scale, and quality of content production."
+          pageTitle="Recipe Home"
+          pageDescription="Recipe using Content Marketing Platform"
         />
-        <h2>Recipe</h2>
-        {getArticles.map((article) => (
-          <tr key={article.id}>
-            {article.recipe_Title}: {article.publicationDate}
-          </tr>
-        ))}
+        <Breadcrumbs navi={breadcrumbmenu} />
+        <ul>
+          {getArticles.map((item) => (
+            <li key={item.id}>{item.recipe_Title}</li>
+          ))}
+        </ul>
         <Footer />
       </main>
     </>
   );
 };
 
-export default Content;
+export default Recipe;

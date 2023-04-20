@@ -5,6 +5,7 @@
       content_Name
       content_PublicationDate
       createdOn
+      content_Brief
     }
   }
 }
