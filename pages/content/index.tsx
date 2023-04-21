@@ -50,11 +50,11 @@ const Content: NextPage<Props> = ({ posts, articles }) => {
 
   getAllArticles.forEach((article: Partial<Recipe>, index) => {
     if (index < 3) {
-      getPosts.push({
+      getArticles.push({
         id: article.id,
         title: article.recipe_Title,
         href: "/content/recipe",
-        brief: article.brief,
+        brief: "post.brief",
         publicationDate: article.publicationDate,
       });
     }
