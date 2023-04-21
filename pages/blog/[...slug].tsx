@@ -6,7 +6,7 @@ import Menu from "@/components/Menu/Menu";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { Blog } from "@/interfaces/content";
-import { getAllBlog } from "@/api/queries/getBlog";
+import { getAllBlog, getBlogBySlug } from "@/api/queries/getBlog";
 
 interface BlogPost {
   slug: string;
@@ -51,11 +51,14 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 
   // 最後の要素を使ってブログの記事を取得するなどの処理を行う
   const lastSlug = slug[slug.length - 1];
+
+  const getPost = await getBlogBySlug(lastSlug);
+
   // ここでは、ダミーの記事データを作成して返す例を示します
   const post: BlogPost = {
     slug: lastSlug,
-    title: `Post ${lastSlug}`,
-    content: `Content of Post ${lastSlug}`,
+    title: getPost.blog_Title || "",
+    content: "Content of Post" + getPost.blog_Body,
   };
 
   return {

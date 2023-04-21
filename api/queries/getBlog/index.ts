@@ -32,9 +32,9 @@ export const getAllBlog = async (): Promise<Partial<Blog>[]> => {
 };
 
 export const getBlogBySlug = async (slug: string): Promise<Partial<Blog>> => {
-  const productResponse: BlogResponse = (await fetchGraphQL(
+  const blogResponse: AllBlogResponse = (await fetchGraphQL(
     getBlogBySlugQuery(slug)
-  )) as BlogResponse;
+  )) as AllBlogResponse;
 
-  return productResponse.data.blog;
+  return blogResponse.data.blog.results[0];
 };
