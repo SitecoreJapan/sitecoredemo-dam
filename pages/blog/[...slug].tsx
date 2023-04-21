@@ -5,6 +5,8 @@ import { Navi } from "@/interfaces/navi";
 import Menu from "@/components/Menu/Menu";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
+import { Blog } from "@/interfaces/content";
+import { getAllBlog } from "@/api/queries/getBlog";
 
 interface BlogPost {
   slug: string;
@@ -12,18 +14,26 @@ interface BlogPost {
   content: string;
 }
 
-interface BlogProps {
+interface Props {
   post: BlogPost;
 }
 
-// getStaticPaths関数で動的なパスを生成
 export const getStaticPaths: GetStaticPaths = async () => {
-  // ブログの記事のslugを指定して、動的なパスを生成する
-  const slugs = [];
+  const allPosts = await getAllBlog();
+  const slugs: [string, string, string, string][] = [];
 
-  slugs.push(["post-1", "post2"]);
-  slugs.push(["post-2", "post2"]);
-  slugs.push(["post-3", "post2"]);
+  allPosts.forEach((item) => {
+    const publication = item.publicationDate
+      ? item.publicationDate.slice(0, 10) || ""
+      : "";
+    const publicationYear = publication.slice(0, 4);
+    const publicationMonth = publication.slice(6, 7);
+    const publicationDay = publication.slice(9, 10);
+
+    const slug = item.blog_Title ? item.blog_Title || "" : "";
+
+    slugs.push([publicationYear, publicationMonth, publicationDay, slug]);
+  });
 
   const paths = slugs.map((slug) => ({
     params: { slug },
@@ -36,7 +46,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 // getStaticProps関数でslugを受け取り、ブログの記事を取得する
-export const getStaticProps: GetStaticProps<BlogProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const slug = params?.slug as string[]; // slugを取得
 
   // 最後の要素を使ってブログの記事を取得するなどの処理を行う
@@ -56,7 +66,7 @@ export const getStaticProps: GetStaticProps<BlogProps> = async ({ params }) => {
 };
 
 // ページコンポーネント
-const BlogPostPage = ({ post }: BlogProps) => {
+const BlogPostPage = ({ post }: Props) => {
   const router = useRouter();
 
   const breadcrumbmenu: Navi[] = [
