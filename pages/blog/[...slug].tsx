@@ -19,11 +19,11 @@ interface BlogProps {
 // getStaticPaths関数で動的なパスを生成
 export const getStaticPaths: GetStaticPaths = async () => {
   // ブログの記事のslugを指定して、動的なパスを生成する
-  const slugs = [
-    ["post-1", "post2"], // 例として3つのslugを指定
-    ["post-2", "post2"],
-    ["post-3", "post2"],
-  ];
+  const slugs = [];
+
+  slugs.push(["post-1", "post2"]);
+  slugs.push(["post-2", "post2"]);
+  slugs.push(["post-3", "post2"]);
 
   const paths = slugs.map((slug) => ({
     params: { slug },
