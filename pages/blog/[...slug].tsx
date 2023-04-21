@@ -1,3 +1,8 @@
+import Footer from "@/components/Footer/Footer";
+import HeroArea from "@/components/Header/HeroArea";
+import Breadcrumbs from "@/components/Menu/Breadcrumbs";
+import { Navi } from "@/interfaces/navi";
+import Menu from "@/components/Menu/Menu";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 
@@ -53,16 +58,32 @@ export const getStaticProps: GetStaticProps<BlogProps> = async ({ params }) => {
 // ページコンポーネント
 const BlogPostPage = ({ post }: BlogProps) => {
   const router = useRouter();
+
+  const breadcrumbmenu: Navi[] = [
+    { name: "Content", href: "/content", current: false },
+    { name: "blog", href: "/blog", current: false },
+    { name: "dummy", href: "/blog/dummy", current: true },
+  ];
+
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div>
-      <h1>{post.title}</h1>
-      <p>{post.content}</p>
-      {/* その他の表示内容 */}
-    </div>
+    <main>
+      <Menu />
+      <HeroArea
+        pageTitle="Blog Home"
+        pageDescription="Blog using Content Marketing Platform"
+      />
+      <Breadcrumbs navi={breadcrumbmenu} />
+      <div>
+        <h1>{post.title}</h1>
+        <p>{post.content}</p>
+        {/* その他の表示内容 */}
+      </div>
+      <Footer />
+    </main>
   );
 };
 
