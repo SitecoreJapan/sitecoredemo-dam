@@ -111,7 +111,7 @@ export const allRecipeQuery =
     }
   }`;
 
-export const getBlogBySlug = (slug: string) => {
+export const getBlogBySlugQuery = (slug: string) => {
   return (
     `
     {

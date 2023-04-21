@@ -4,7 +4,7 @@ import {
   AllBlogResponse,
   BlogResponse,
   allBlogQuery,
-  getBlogBySlug,
+  getBlogBySlugQuery,
 } from "@/interfaces/content";
 
 export const getAllBlog = async (): Promise<Partial<Blog>[]> => {
@@ -31,9 +31,9 @@ export const getAllBlog = async (): Promise<Partial<Blog>[]> => {
   return posts;
 };
 
-export const getBlogById = async (slug: string): Promise<Partial<Blog>> => {
+export const getBlogBySlug = async (slug: string): Promise<Partial<Blog>> => {
   const productResponse: BlogResponse = (await fetchGraphQL(
-    getBlogBySlug(slug)
+    getBlogBySlugQuery(slug)
   )) as BlogResponse;
 
   return productResponse.data.blog;

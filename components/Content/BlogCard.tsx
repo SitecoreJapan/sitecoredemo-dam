@@ -12,7 +12,7 @@ export default function RecipeCard({ blog }: Props) {
   const blogUrl =
     "/blog/" +
     moment(yearmonthdate).format("YYYY/MM/DD/") +
-    encodeURI(blog.blog_Title);
+    encodeURI(blog.contentName);
   // const blogUrl = "/blog/" + blog.id;
 
   return (
