@@ -29,9 +29,7 @@ export default function RecipeCard({ blog }: Props) {
             <Moment format="YYYY/MM/DD">{yearmonthdate}</Moment>
           </time>
         </div>
-        <p className="mt-5 line-clamp-3 text-sm leading-6 ">
-          {blog.blog_Quote}
-        </p>
+        <p className="mt-5 line-clamp-3 text-sm leading-6 ">{blog.brief}</p>
       </div>
     </div>
   );

@@ -8,14 +8,8 @@ import { useRouter } from "next/router";
 import { Blog } from "@/interfaces/content";
 import { getAllBlog, getBlogBySlug } from "@/api/queries/getBlog";
 
-interface BlogPost {
-  slug: string;
-  title: string;
-  content: string;
-}
-
 interface Props {
-  post: BlogPost;
+  post: Partial<Blog>;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -54,16 +48,9 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 
   const getPost = await getBlogBySlug(lastSlug);
 
-  // ここでは、ダミーの記事データを作成して返す例を示します
-  const post: BlogPost = {
-    slug: lastSlug,
-    title: getPost.blog_Title || "",
-    content: "Content of Post" + getPost.blog_Body,
-  };
-
   return {
     props: {
-      post,
+      post: getPost,
     },
   };
 };
@@ -72,10 +59,12 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 const BlogPostPage = ({ post }: Props) => {
   const router = useRouter();
 
+  const pageTitle = post?.blog_Title || "Default Title";
+
   const breadcrumbmenu: Navi[] = [
     { name: "Content", href: "/content", current: false },
     { name: "blog", href: "/blog", current: false },
-    { name: post.title, href: "#", current: true },
+    { name: pageTitle, href: "#", current: true },
   ];
 
   if (router.isFallback) {
@@ -86,14 +75,19 @@ const BlogPostPage = ({ post }: Props) => {
     <main>
       <Menu />
       <HeroArea
-        pageTitle={post.title}
+        pageTitle={pageTitle}
         pageDescription="Blog using Content Marketing Platform"
       />
       <Breadcrumbs navi={breadcrumbmenu} />
       <div>
-        <h1>{post.title}</h1>
-        <p>{post.content}</p>
-        {/* その他の表示内容 */}
+        <h1>{pageTitle}</h1>
+        <p>{post.publicationDate}</p>
+        <p>{post.blog_Quote}</p>
+        <p>{post.blog_Body}</p>
+        <p>
+          Asset {post.assets?.results[0].publicLink?.results[0].relativeUrl}
+        </p>
+        <p>brief {post.brief}</p>
       </div>
       <Footer />
     </main>
