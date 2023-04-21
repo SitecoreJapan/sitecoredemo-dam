@@ -27,8 +27,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
       ? item.publicationDate.slice(0, 10) || ""
       : "";
     const publicationYear = publication.slice(0, 4);
-    const publicationMonth = publication.slice(6, 7);
-    const publicationDay = publication.slice(9, 10);
+    const publicationMonth = publication.slice(5, 7);
+    const publicationDay = publication.slice(8, 10);
 
     const slug = item.blog_Title ? item.blog_Title || "" : "";
 
@@ -72,7 +72,7 @@ const BlogPostPage = ({ post }: Props) => {
   const breadcrumbmenu: Navi[] = [
     { name: "Content", href: "/content", current: false },
     { name: "blog", href: "/blog", current: false },
-    { name: "dummy", href: "/blog/dummy", current: true },
+    { name: post.title, href: "#", current: true },
   ];
 
   if (router.isFallback) {
@@ -83,7 +83,7 @@ const BlogPostPage = ({ post }: Props) => {
     <main>
       <Menu />
       <HeroArea
-        pageTitle="Blog Home"
+        pageTitle={post.title}
         pageDescription="Blog using Content Marketing Platform"
       />
       <Breadcrumbs navi={breadcrumbmenu} />

@@ -9,8 +9,11 @@ interface Props {
 
 export default function RecipeCard({ blog }: Props) {
   const yearmonthdate = blog.publicationDate.slice(0, 10);
-  // const blogUrl = "/blog/" + moment(yearmonthdate).format("YYYY/MM/DD/") + encodeURI(blog.blog_Title);
-  const blogUrl = "/blog/" + blog.id;
+  const blogUrl =
+    "/blog/" +
+    moment(yearmonthdate).format("YYYY/MM/DD/") +
+    encodeURI(blog.blog_Title);
+  // const blogUrl = "/blog/" + blog.id;
 
   return (
     <div>
