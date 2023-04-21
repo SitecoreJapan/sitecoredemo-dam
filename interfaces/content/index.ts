@@ -2,6 +2,7 @@ import { Asset, publicLink } from "@/interfaces/asset";
 
 export interface Content {
   id: string;
+  contentName: string;
   publicationDate: string;
   locale: {
     valueName: string;
@@ -61,6 +62,7 @@ export interface RecipeResponse {
 export const m_content =
   `
 id
+contentName: content_Name
 publicationDate: content_PublicationDate
 locale: localizationToContent {
   valueName
@@ -84,7 +86,6 @@ export const allBlogQuery =
   {
     blog: allM_Content_Blog (orderBy: CONTENT_PUBLICATIONDATE_DESC) {
       results {
-        content_Name
         blog_Title
         blog_Quote
         blog_Body` +
@@ -110,19 +111,22 @@ export const allRecipeQuery =
     }
   }`;
 
-export const getBlogByIdQuery = (id: string) => {
+export const getBlogBySlug = (slug: string) => {
   return (
     `
-  {
-    blog: m_Content_Blog(id: "${id}") {
-      blog_Title
-      blog_Quote
-      blog_Body
-      ` +
+    {
+      blog: allM_Content_Blog(where: { content_Name_eq: "${slug}" }) {
+        results {
+          blog_Title
+          blog_Quote
+          blog_Body
+          ` +
     m_content +
     `
+        }
+      }
     }
-  }
+    
   `
   );
 };

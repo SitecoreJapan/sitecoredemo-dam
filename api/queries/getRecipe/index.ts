@@ -23,6 +23,9 @@ export const getAllRecipe = async (): Promise<Partial<Recipe>[]> => {
       recipe_Nutritionalfacts: article.recipe_Nutritionalfacts,
       publicationDate: article.publicationDate,
       locale: article.locale,
+      brief: article.brief,
+      contentName: article.contentName,
+      assets: article.assets,
     });
   });
 

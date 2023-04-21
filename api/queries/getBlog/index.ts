@@ -4,7 +4,7 @@ import {
   AllBlogResponse,
   BlogResponse,
   allBlogQuery,
-  getBlogByIdQuery,
+  getBlogBySlug,
 } from "@/interfaces/content";
 
 export const getAllBlog = async (): Promise<Partial<Blog>[]> => {
@@ -22,15 +22,18 @@ export const getAllBlog = async (): Promise<Partial<Blog>[]> => {
       blog_Body: post.blog_Quote,
       publicationDate: post.publicationDate,
       locale: post.locale,
+      contentName: post.contentName,
+      brief: post.brief,
+      assets: post.assets,
     });
   });
 
   return posts;
 };
 
-export const getBlogById = async (id: string): Promise<Partial<Blog>> => {
+export const getBlogById = async (slug: string): Promise<Partial<Blog>> => {
   const productResponse: BlogResponse = (await fetchGraphQL(
-    getBlogByIdQuery(id)
+    getBlogBySlug(slug)
   )) as BlogResponse;
 
   return productResponse.data.blog;

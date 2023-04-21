@@ -1,11 +1,11 @@
 {
   blog: allM_Content_Blog {
     results {
-      content_Name
       blog_Title
       blog_Quote
       blog_Body
       id
+      contentName: content_Name
       publicationDate: content_PublicationDate
       Locale: localizationToContent {
         valueName

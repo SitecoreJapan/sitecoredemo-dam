@@ -30,7 +30,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     const publicationMonth = publication.slice(5, 7);
     const publicationDay = publication.slice(8, 10);
 
-    const slug = item.blog_Title ? item.blog_Title || "" : "";
+    const slug = item.contentName ? item.contentName || "" : "";
 
     slugs.push([publicationYear, publicationMonth, publicationDay, slug]);
   });

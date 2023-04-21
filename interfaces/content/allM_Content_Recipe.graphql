@@ -6,6 +6,7 @@
       recipe_Cookinginstructions
       recipe_Nutritionalfacts
       id
+      contentName: content_Name
       publicationDate: content_PublicationDate
       Locale: localizationToContent {
         valueName

@@ -2,10 +2,11 @@
   allM_Content {
     results {
       id
-      content_Name
-      content_PublicationDate
+      contentName: content_Name
+      publicationDate: content_PublicationDate
       createdOn
-      content_Brief
+      brief: content_Brief
+      contentName: content_Name
     }
   }
 }

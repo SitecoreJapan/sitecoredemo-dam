@@ -1,12 +1,9 @@
 {
-  blog: m_Content_Blog(id: "lJtWSgsv0U2CM70L9V7neA") {
-    blog_Title
-    blog_Quote
-    blog_Body
-    id
-    publicationDate: content_PublicationDate
-    Locale: localizationToContent {
-      valueName
+  blog: allM_Content_Blog(where: { content_Name_eq: "Japanese blog" }) {
+    results {
+      blog_Title
+      blog_Quote
+      blog_Body
     }
   }
 }
