@@ -8,7 +8,7 @@ interface Props {
   asset: Asset;
 }
 
-const AssetCard: React.FC<Props> = ({ asset }) => {
+export default function AssetCard({ asset }: Props) {
   const publicLinkImage = asset.publicLink.results[0]?.relativeUrl;
   const fileSize = asset.fileSize.toFixed(2);
 
@@ -45,6 +45,4 @@ const AssetCard: React.FC<Props> = ({ asset }) => {
       </li>
     </>
   );
-};
-
-export default AssetCard;
+}
