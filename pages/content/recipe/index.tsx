@@ -46,7 +46,7 @@ const Recipe: NextPage<Props> = ({ articles }) => {
         />
         <Breadcrumbs navi={breadcrumbmenu} />
         <div className="mt-8 mb-8 ml-8 mr-8">
-          <h2 className="text-2xl mb-8">New posts</h2>
+          <h2 className="text-2xl mb-8">New Recipe</h2>
           <ul>
             {getArticles.map((item) => (
               <article

@@ -10,7 +10,7 @@ import Breadcrumbs from "@/components/Menu/Breadcrumbs";
 import Footer from "@/components/Footer/Footer";
 
 interface Props {
-  recipe: Recipe;
+  recipeInfo: Recipe;
 }
 
 export const getStaticPaths = async () => {
@@ -37,27 +37,54 @@ export const getStaticProps = async (context: { params: { recipe: any } }) => {
 };
 
 const RecipeDetail: NextPage<Props> = (props) => {
-  const recipe = props.recipe;
-  const pageTitle = "Test";
+  const recipe = props.recipeInfo;
+  const pageTitle = "Recipe: " + recipe.recipe_Title;
+
+  const description = recipe?.brief || "no description";
+
+  const metaDescription = description.replace(/<[^>]+>/g, "");
 
   const breadcrumbmenu: Navi[] = [
     { name: "Content", href: "/content", current: false },
     { name: "Recipe", href: "/content/recipe", current: false },
-    { name: pageTitle, href: "#", current: true },
+    { name: recipe.recipe_Title, href: "#", current: true },
   ];
   return (
     <>
       <Head>
         <title>{pageTitle}</title>
+        <meta name="description" content={metaDescription} />
       </Head>
       <main>
         <Menu />
         <HeroArea
-          pageTitle={pageTitle}
-          pageDescription={"Recipe: " + pageTitle}
+          pageTitle={recipe.recipe_Title}
+          pageDescription={metaDescription}
         />
         <Breadcrumbs navi={breadcrumbmenu} />
-        <div>Test</div>
+        <div className="mt-4 ml-8 mr-8 mb-7">
+          <h2 className="text-2xl font-bold">INGREDIENTS</h2>
+          <article
+            className="prose prose-slate dark:prose-invert"
+            dangerouslySetInnerHTML={{
+              __html: recipe.recipe_Ingredients || "",
+            }}
+          ></article>
+          <h2 className="text-2xl font-bold">COOKING INSTRUCTIONS</h2>
+          <article
+            className="prose prose-slate dark:prose-invert"
+            dangerouslySetInnerHTML={{
+              __html: recipe.recipe_Cookinginstructions || "",
+            }}
+          ></article>
+          <h2 className="text-2xl font-bold">NUTRITIONAL FACTS</h2>
+          <article
+            className="prose prose-slate dark:prose-invert"
+            dangerouslySetInnerHTML={{
+              __html: recipe.recipe_Nutritionalfacts || "",
+            }}
+          ></article>
+        </div>
         <Footer />
       </main>
     </>

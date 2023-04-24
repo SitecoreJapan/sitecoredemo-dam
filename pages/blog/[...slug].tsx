@@ -64,7 +64,6 @@ const BlogPostPage = ({ post }: Props) => {
   const description = post?.blog_Quote || "no description";
 
   const metaDescription = description.replace(/<[^>]+>/g, "");
-  const blogBody = post.blog_Quote;
 
   const breadcrumbmenu: Navi[] = [
     { name: "Content", href: "/content", current: false },
@@ -95,7 +94,7 @@ const BlogPostPage = ({ post }: Props) => {
         <div className="mt-4 ml-8 mr-8 mb-7">
           <article
             className="prose prose-slate dark:prose-invert"
-            dangerouslySetInnerHTML={{ __html: blogBody || "" }}
+            dangerouslySetInnerHTML={{ __html: post.blog_Quote || "" }}
           ></article>
         </div>
         <div className="mt-4 ml-8 mr-8 mb-7">
