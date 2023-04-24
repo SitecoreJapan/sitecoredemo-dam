@@ -64,6 +64,7 @@ const BlogPostPage = ({ post }: Props) => {
   const description = post?.blog_Quote || "no description";
 
   const metaDescription = description.replace(/<[^>]+>/g, "");
+  const blogBody = post.blog_Quote;
 
   const breadcrumbmenu: Navi[] = [
     { name: "Content", href: "/content", current: false },
@@ -92,10 +93,16 @@ const BlogPostPage = ({ post }: Props) => {
         />
         <Breadcrumbs navi={breadcrumbmenu} />
         <div className="mt-4 ml-8 mr-8 mb-7">
-          <div className="mt-4 mb-4">
-            <div dangerouslySetInnerHTML={{ __html: post.blog_Quote || "" }} />
-          </div>
-          <div dangerouslySetInnerHTML={{ __html: post.blog_Body || "" }} />
+          <article
+            className="prose prose-slate"
+            dangerouslySetInnerHTML={{ __html: blogBody || "" }}
+          ></article>
+        </div>
+        <div className="mt-4 ml-8 mr-8 mb-7">
+          <article
+            className="prose prose-slate"
+            dangerouslySetInnerHTML={{ __html: post.blog_Body || "" }}
+          ></article>
         </div>
         <Footer />
       </main>
