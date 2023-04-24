@@ -1,4 +1,5 @@
 import { getAllRecipe } from "@/api/queries/getRecipe";
+import RecipeCard from "@/components/Content/RecipeCard";
 import Footer from "@/components/Footer/Footer";
 import HeroArea from "@/components/Header/HeroArea";
 import Breadcrumbs from "@/components/Menu/Breadcrumbs";
@@ -44,11 +45,19 @@ const Recipe: NextPage<Props> = ({ articles }) => {
           pageDescription="Recipe using Content Marketing Platform"
         />
         <Breadcrumbs navi={breadcrumbmenu} />
-        <ul>
-          {getArticles.map((item) => (
-            <li key={item.id}>{item.recipe_Title}</li>
-          ))}
-        </ul>
+        <div className="mt-8 mb-8 ml-8 mr-8">
+          <h2 className="text-2xl mb-8">New posts</h2>
+          <ul>
+            {getArticles.map((item) => (
+              <article
+                key={item.id}
+                className="flex max-w-xl flex-col items-start justify-between"
+              >
+                <RecipeCard recipe={item} />
+              </article>
+            ))}
+          </ul>
+        </div>
         <Footer />
       </main>
     </>

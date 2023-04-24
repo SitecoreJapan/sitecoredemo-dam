@@ -9,7 +9,6 @@ import { Navi } from "@/interfaces/navi";
 import { Product } from "@/interfaces/product";
 import { NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
 
 interface Props {
   productInfo: Product;

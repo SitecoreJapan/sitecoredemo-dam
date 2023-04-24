@@ -7,7 +7,7 @@ interface Props {
   blogImage: string;
 }
 
-export default function HeroArea({ blogTitle, blogDate, blogImage }: Props) {
+export default function BlogHero({ blogTitle, blogDate, blogImage }: Props) {
   const damPublicImage =
     "https://shinharadam.sitecoresandbox.cloud/api/public/content/" + blogImage;
   return (
