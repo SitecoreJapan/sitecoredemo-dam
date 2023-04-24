@@ -1,0 +1,16 @@
+{
+  blog: allM_Content_Blog {
+    results {
+      blog_Title
+      blog_Quote
+      blog_Body
+      id
+      contentName: content_Name
+      publicationDate: content_PublicationDate
+      Locale: localizationToContent {
+        valueName
+      }
+      content_Brief
+    }
+  }
+}

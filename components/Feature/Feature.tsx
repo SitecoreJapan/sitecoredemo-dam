@@ -12,14 +12,14 @@ const features = [
     icon: MdProductionQuantityLimits,
   },
   {
-    name: "Asset Management",
+    name: "Digital Asset Management",
     description:
       "Centralize all your digital assets and deliver them to any customer touchpoint",
     href: "/assets",
     icon: HiOutlinePhotograph,
   },
   {
-    name: "Content Management",
+    name: "Content Marketing Platform",
     description:
       "Maximize the business value of stronger content by expanding the speed, scale, and quality of content production.",
     href: "/content",

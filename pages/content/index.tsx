@@ -1,31 +1,39 @@
-import { getAllProduct } from "@/api/queries/getProduct";
+import { getAllBlog } from "@/api/queries/getBlog";
+import { getAllRecipe } from "@/api/queries/getRecipe";
+import BlogList from "@/components/Content/BlogList";
+import RecipeList from "@/components/Content/RecipeList";
+import ContentList from "@/components/Content/RecipeList";
 import Footer from "@/components/Footer/Footer";
 import HeroArea from "@/components/Header/HeroArea";
 import Menu from "@/components/Menu/Menu";
 import { REVALIDATE_INTERVAL } from "@/constants/build";
-import { Product } from "@/interfaces/product";
+import { Blog, ContentTitle, Recipe } from "@/interfaces/content";
 import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useMemo } from "react";
 
 interface Props {
-  products: Product[];
+  posts: Blog[];
+  articles: Recipe[];
 }
 
 export const getStaticProps = async () => {
-  const products = await getAllProduct();
+  const posts = await getAllBlog();
+  const articles = await getAllRecipe();
 
   return {
     props: {
-      products,
+      posts,
+      articles,
     },
     revalidate: REVALIDATE_INTERVAL,
   };
 };
 
-const Content: NextPage<Props> = ({ products }) => {
-  const getProducts = useMemo(() => (!products ? [] : products), [products]);
+const Content: NextPage<Props> = ({ posts, articles }) => {
+  const getPosts = useMemo(() => (!posts ? [] : posts), [posts]);
+  const getArticles = useMemo(() => (!articles ? [] : articles), [articles]);
 
   return (
     <>
@@ -35,10 +43,27 @@ const Content: NextPage<Props> = ({ products }) => {
       <main>
         <Menu />
         <HeroArea
-          pageTitle="Sitecore Content Marketing Platform"
+          pageTitle="Content Marketing Platform"
           pageDescription="Maximize the business value of stronger content by expanding the speed, scale, and quality of content production."
         />
-        Now constructions
+        <div className="mt-10 ml-10 mb-10 mr-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <h2 className="text-2xl mb-3">Blog</h2>
+              <BlogList content={getPosts} />
+              <p className="text-right mt-4">
+                <Link href="/blog/">More blog posts</Link>
+              </p>
+            </div>
+            <div>
+              <h2 className="text-2xl mb-3">Recipe</h2>
+              <RecipeList content={getArticles} />
+              <p className="text-right mt-4">
+                <Link href="/content/recipe/">More Recipes</Link>
+              </p>
+            </div>
+          </div>
+        </div>
         <Footer />
       </main>
     </>

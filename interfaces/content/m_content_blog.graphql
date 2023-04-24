@@ -1,0 +1,9 @@
+{
+  blog: allM_Content_Blog(where: { content_Name_eq: "Japanese blog" }) {
+    results {
+      blog_Title
+      blog_Quote
+      blog_Body
+    }
+  }
+}

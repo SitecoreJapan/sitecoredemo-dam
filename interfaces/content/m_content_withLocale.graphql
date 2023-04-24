@@ -1,0 +1,26 @@
+# https://doc.sitecore.com/ch/en/developers/42/cloud-dev/graphql--graphql-examples.html
+# https://doc.sitecore.com/ch/en/developers/42/cloud-dev/graphql--graphql-examples.html
+{
+  allM_Content(
+    orderBy: CONTENT_PUBLICATIONDATE_DESC
+    where: {
+      m_Content_IsVariant_eq: true
+      localizationToContent: { m_Localization_ids: "M.Localization.en-US" }
+    }
+  ) {
+    total
+    results {
+      id
+      content_Name
+      content_PublicationDate
+      m_Content_IsVariant
+
+      localizationToContent {
+        valueName
+      }
+      contentTypeToContent {
+        contentType_Label
+      }
+    }
+  }
+}
