@@ -94,13 +94,13 @@ const BlogPostPage = ({ post }: Props) => {
         <Breadcrumbs navi={breadcrumbmenu} />
         <div className="mt-4 ml-8 mr-8 mb-7">
           <article
-            className="prose prose-slate"
+            className="prose prose-slate dark:prose-invert"
             dangerouslySetInnerHTML={{ __html: blogBody || "" }}
           ></article>
         </div>
         <div className="mt-4 ml-8 mr-8 mb-7">
           <article
-            className="prose prose-slate"
+            className="prose prose-slate dark:prose-invert"
             dangerouslySetInnerHTML={{ __html: post.blog_Body || "" }}
           ></article>
         </div>

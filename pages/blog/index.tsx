@@ -1,4 +1,5 @@
 import { getAllBlog } from "@/api/queries/getBlog";
+import BlogCard from "@/components/Content/BlogCard";
 import Footer from "@/components/Footer/Footer";
 import HeroArea from "@/components/Header/HeroArea";
 import Breadcrumbs from "@/components/Menu/Breadcrumbs";
@@ -44,11 +45,19 @@ const Blog: NextPage<Props> = ({ posts }) => {
           pageDescription="Blog using Content Marketing Platform"
         />
         <Breadcrumbs navi={breadcrumbmenu} />
-        <ul>
-          {getPosts.map((item) => (
-            <li key={item.id}>{item.blog_Title}</li>
-          ))}
-        </ul>
+        <div className="mt-8 mb-8 ml-8 mr-8">
+          <h2 className="text-2xl mb-8">New posts</h2>
+          <ul>
+            {getPosts.map((item) => (
+              <article
+                key={item.id}
+                className="flex max-w-xl flex-col items-start justify-between"
+              >
+                <BlogCard blog={item} />
+              </article>
+            ))}
+          </ul>
+        </div>
         <Footer />
       </main>
     </>

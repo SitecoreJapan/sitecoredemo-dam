@@ -7,7 +7,7 @@ interface Props {
   blog: Blog;
 }
 
-export default function RecipeCard({ blog }: Props) {
+export default function BlogCard({ blog }: Props) {
   const yearmonthdate = blog.publicationDate.slice(0, 10);
   const blogUrl =
     "/blog/" +
