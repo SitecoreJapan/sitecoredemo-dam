@@ -7,6 +7,10 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { Blog } from "@/interfaces/content";
 import { getAllBlog, getBlogBySlug } from "@/api/queries/getBlog";
+import moment from "moment";
+import Moment from "react-moment";
+import Head from "next/head";
+import BlogHero from "@/components/Header/BlogHero";
 
 interface Props {
   post: Partial<Blog>;
@@ -39,11 +43,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-// getStaticProps関数でslugを受け取り、ブログの記事を取得する
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const slug = params?.slug as string[]; // slugを取得
+  const slug = params?.slug as string[];
 
-  // 最後の要素を使ってブログの記事を取得するなどの処理を行う
   const lastSlug = slug[slug.length - 1];
 
   const getPost = await getBlogBySlug(lastSlug);
@@ -55,15 +57,17 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   };
 };
 
-// ページコンポーネント
 const BlogPostPage = ({ post }: Props) => {
   const router = useRouter();
 
   const pageTitle = post?.blog_Title || "Default Title";
+  const description = post?.blog_Quote || "no description";
+
+  const metaDescription = description.replace(/<[^>]+>/g, "");
 
   const breadcrumbmenu: Navi[] = [
     { name: "Content", href: "/content", current: false },
-    { name: "blog", href: "/blog", current: false },
+    { name: "Blog", href: "/blog", current: false },
     { name: pageTitle, href: "#", current: true },
   ];
 
@@ -72,25 +76,30 @@ const BlogPostPage = ({ post }: Props) => {
   }
 
   return (
-    <main>
-      <Menu />
-      <HeroArea
-        pageTitle={pageTitle}
-        pageDescription="Blog using Content Marketing Platform"
-      />
-      <Breadcrumbs navi={breadcrumbmenu} />
-      <div>
-        <h1>{pageTitle}</h1>
-        <p>{post.publicationDate}</p>
-        <p>{post.blog_Quote}</p>
-        <p>{post.blog_Body}</p>
-        <p>
-          Asset {post.assets?.results[0].publicLink?.results[0].relativeUrl}
-        </p>
-        <p>brief {post.brief}</p>
-      </div>
-      <Footer />
-    </main>
+    <>
+      <Head>
+        <title>{pageTitle}</title>
+        <meta name="description" content={metaDescription} />
+      </Head>
+      <main>
+        <Menu />
+        <BlogHero
+          blogTitle={pageTitle}
+          blogDate={post.publicationDate || ""}
+          blogImage={
+            post.assets?.results[0].publicLink?.results[0].relativeUrl || ""
+          }
+        />
+        <Breadcrumbs navi={breadcrumbmenu} />
+        <div className="mt-4 ml-8 mr-8 mb-7">
+          <div className="mt-4 mb-4">
+            <div dangerouslySetInnerHTML={{ __html: post.blog_Quote || "" }} />
+          </div>
+          <div dangerouslySetInnerHTML={{ __html: post.blog_Body || "" }} />
+        </div>
+        <Footer />
+      </main>
+    </>
   );
 };
 

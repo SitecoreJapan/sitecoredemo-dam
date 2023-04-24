@@ -14,6 +14,8 @@ export default function RecipeCard({ blog }: Props) {
     moment(yearmonthdate).format("YYYY/MM/DD/") +
     encodeURI(blog.contentName);
   // const blogUrl = "/blog/" + blog.id;
+  const description = blog?.blog_Quote || "no description";
+  const metaDescription = description.replace(/<[^>]+>/g, "");
 
   return (
     <div>
@@ -29,7 +31,9 @@ export default function RecipeCard({ blog }: Props) {
             <Moment format="YYYY/MM/DD">{yearmonthdate}</Moment>
           </time>
         </div>
-        <p className="mt-5 line-clamp-3 text-sm leading-6 ">{blog.brief}</p>
+        <p className="mt-5 line-clamp-3 text-sm leading-6 ">
+          {metaDescription}
+        </p>
       </div>
     </div>
   );
